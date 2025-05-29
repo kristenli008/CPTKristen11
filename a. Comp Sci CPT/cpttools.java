@@ -24,7 +24,8 @@ public class cpttools{
 			strArray = new String[intCol][2];
 			con2.println("hi outside");
 			
-			
+			String strRead = textfile.readLine();
+			con2.println(strRead);
 			
 			// converting text file to string array + random doubles
 			int intCount;

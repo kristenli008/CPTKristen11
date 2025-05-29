@@ -5,6 +5,9 @@ public class bubbletest1{
 		Console con = new Console();
 		
 		TextInputFile animes = new TextInputFile("popular animes.txt");
+		
+		String strFileName = "popular animes";
+		
 		String strArray[][];
 		String strRead;
 		int intCols = 0;
