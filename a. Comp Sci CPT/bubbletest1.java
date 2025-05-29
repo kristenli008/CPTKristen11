@@ -17,7 +17,7 @@ public class bubbletest1{
 		}
 		
 		con.println(intCols);
-		
+				
 		strArray = new String[intCols][1];
 		strArray = cpttools.randomsort(animes,intCols);
 		
