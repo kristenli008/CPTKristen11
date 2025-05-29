@@ -22,18 +22,41 @@ public class cptmaster{
 			con.println("Please type in the theme name.");
 			con.println("Popular Animes || Board Games || Cartoons || Digital Art Programs");
 			strTheme = con.readLine();
+			String strArray[][];
+			String strRead;
+			int intCols = 0;
 			
 			if(strTheme.equalsIgnoreCase("popular animes")){
-				intScore = gameplay(strName, animes);
+				while(animes.eof() == false){
+					strRead = animes.readLine();
+					intCols = intCols + 1;
+				}
+				strArray = cpttools.randomsort(animes, intCols);
+				intScore = gameplay(strName, strArray);
 				blnerror = true;
 			}else if(strTheme.equalsIgnoreCase("board games")){
-				intScore = gameplay(strName, boardgames);
+				while(boardgames.eof() == false){
+					strRead = boardgames.readLine();
+					intCols = intCols + 1;
+				}
+				strArray = cpttools.randomsort(boardgames, intCols);
+				intScore = gameplay(strName, strArray);
 				blnerror = true;
 			}else if(strTheme.equalsIgnoreCase("cartoons")){
-				intScore = gameplay(strName, cartoons);
+				while(cartoons.eof() == false){
+					strRead = cartoons.readLine();
+					intCols = intCols + 1;
+				}
+				strArray = cpttools.randomsort(cartoons, intCols);
+				intScore = gameplay(strName, strArray);
 				blnerror = true;
 			}else if(strTheme.equalsIgnoreCase("digital art programs")){
-				intScore = gameplay(strName, boardgames);
+				while(artprograms.eof() == false){
+					strRead = artprograms.readLine();
+					intCols = intCols + 1;
+				}
+				strArray = cpttools.randomsort(artprograms, intCols);
+				intScore = gameplay(strName, strArray);
 				blnerror = true;
 			}else{
 				con.println("Please enter a valid name.");
@@ -46,7 +69,7 @@ public class cptmaster{
 		artprograms.close();
 	}
 	
-	public static int gameplay(String strName, TextInputFile textfile){
+	public static int gameplay(String strName, String strArray[][]){
 		int intScore = 0;
 		
 		
