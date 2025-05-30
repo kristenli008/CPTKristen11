@@ -36,7 +36,7 @@ public class cptmaster{
 				}
 				strThemename = "popular animes";
 				strArray = cpttools.randomsort(strThemename, intCols);
-				intScore = gameplay(strName, strArray);
+				intScore = gameplay(strName, strArray, intCols);
 				blnerror = true;
 				
 			}else if(strTheme.equalsIgnoreCase("board games")){
@@ -46,7 +46,7 @@ public class cptmaster{
 				}
 				strThemename = "board games";
 				strArray = cpttools.randomsort(strThemename, intCols);
-				intScore = gameplay(strName, strArray);
+				intScore = gameplay(strName, strArray, intCols);
 				blnerror = true;
 				
 			}else if(strTheme.equalsIgnoreCase("cartoons")){
@@ -56,7 +56,7 @@ public class cptmaster{
 				}
 				strThemename = "cartoons";
 				strArray = cpttools.randomsort(strThemename, intCols);
-				intScore = gameplay(strName, strArray);
+				intScore = gameplay(strName, strArray, intCols);
 				blnerror = true;
 				
 			}else if(strTheme.equalsIgnoreCase("digital art programs")){
@@ -66,7 +66,7 @@ public class cptmaster{
 				}
 				strThemename = "digital art programs";
 				strArray = cpttools.randomsort(strThemename, intCols);
-				intScore = gameplay(strName, strArray);
+				intScore = gameplay(strName, strArray, intCols);
 				blnerror = true;
 				
 			}else{
@@ -80,8 +80,23 @@ public class cptmaster{
 		artprograms.close();
 	}
 	
-	public static int gameplay(String strName, String strArray[][]){
+	public static int gameplay(String strName, String strArray[][], int intCols){
+		
+		// setting variables
 		int intScore = 0;
+		int intCount;
+		String strWord;
+		
+		boolean blnPlayagain = true;
+		
+		// loop to keep playing
+		while(blnPlayagain == true){
+			// loop to play until no more words
+			for(intCount = 0; intCount < intCols; intCount++){
+				strWord = strArray[intCount][0];
+				con.println(strWord);
+			}
+		}
 		
 		
 		
