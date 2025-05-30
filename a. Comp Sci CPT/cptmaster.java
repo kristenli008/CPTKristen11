@@ -79,6 +79,7 @@ public class cptmaster{
 			}
 		}
 		
+		// closing files
 		animes.close();
 		boardgames.close();
 		cartoons.close();
@@ -92,10 +93,12 @@ public class cptmaster{
 			int intScore = 0;
 			int intCount;
 			int intCount2;
+			// word variable
 			String strWord;
 			int intWrongtries;
 			String strLetter;
 			int intLettercount;
+			// word variable but with indiv letters
 			String strWordarray[][];
 			
 			boolean blnPlayagain = true;
@@ -106,16 +109,20 @@ public class cptmaster{
 				for(intCount = 0; intCount < intCols; intCount++){
 					
 					// setting up word variable
-					strWord = strArray[intCount][0];
+					strWord = strArray[0][intCount];
+					con.println(strWord);
 					
 					// counting letter count in word
 					intLettercount = strWord.length();
-					con.println(strWord + " - " + intLettercount);
-					
+					con.println(intLettercount);
+										
 					// transferring letters to array
 					strWordarray = new String[intLettercount][2];
-					for(intCount2 = 1; intCount2 <= intLettercount; intCount++){
-						
+					for(intCount2 = 1; intCount2 <= intLettercount; intCount2++){
+						// setting letter variable
+						strLetter = strWord.substring(intCount2-1, intCount2);
+						strWordarray[0][intCount2-1] = strLetter;
+						con.print(strWordarray[0][intCount2-1]);
 					}
 					
 				}
