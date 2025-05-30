@@ -18,14 +18,12 @@ public class bubbletest1{
 			con.println(strRead);
 			intCols = intCols + 1;
 		}
-		
-		con.println(intCols);
-				
+						
 		strArray = new String[intCols][1];
-		strArray = cpttools.randomsort(animes,intCols);
+		strArray = cpttools.randomsort(strFileName,intCols);
 		
 		for(intCount = 0; intCount < intCols; intCount++){
-			con.println(strArray[intCount][0] + " - " + strArray[intCount][1]);
+			// con.println(strArray[intCount][0] + " - " + strArray[intCount][1]);
 		}
 	}
 }

@@ -6,6 +6,7 @@ public class cptmaster{
 		
 		String strName;
 		String strTheme;
+		String strThemename;
 		int intScore;
 		boolean blnerror = false;
 		
@@ -17,6 +18,7 @@ public class cptmaster{
 		con.println("Please enter your name:");
 		strName = con.readLine();
 		
+		
 		while(blnerror == false){
 			con.println("Which theme would you like to play today?");
 			con.println("Please type in the theme name.");
@@ -26,38 +28,47 @@ public class cptmaster{
 			String strRead;
 			int intCols = 0;
 			
+			
 			if(strTheme.equalsIgnoreCase("popular animes")){
 				while(animes.eof() == false){
 					strRead = animes.readLine();
 					intCols = intCols + 1;
 				}
-				strArray = cpttools.randomsort(animes, intCols);
+				strThemename = "popular animes";
+				strArray = cpttools.randomsort(strThemename, intCols);
 				intScore = gameplay(strName, strArray);
 				blnerror = true;
+				
 			}else if(strTheme.equalsIgnoreCase("board games")){
 				while(boardgames.eof() == false){
 					strRead = boardgames.readLine();
 					intCols = intCols + 1;
 				}
-				strArray = cpttools.randomsort(boardgames, intCols);
+				strThemename = "board games";
+				strArray = cpttools.randomsort(strThemename, intCols);
 				intScore = gameplay(strName, strArray);
 				blnerror = true;
+				
 			}else if(strTheme.equalsIgnoreCase("cartoons")){
 				while(cartoons.eof() == false){
 					strRead = cartoons.readLine();
 					intCols = intCols + 1;
 				}
-				strArray = cpttools.randomsort(cartoons, intCols);
+				strThemename = "cartoons";
+				strArray = cpttools.randomsort(strThemename, intCols);
 				intScore = gameplay(strName, strArray);
 				blnerror = true;
+				
 			}else if(strTheme.equalsIgnoreCase("digital art programs")){
 				while(artprograms.eof() == false){
 					strRead = artprograms.readLine();
 					intCols = intCols + 1;
 				}
-				strArray = cpttools.randomsort(artprograms, intCols);
+				strThemename = "digital art programs";
+				strArray = cpttools.randomsort(strThemename, intCols);
 				intScore = gameplay(strName, strArray);
 				blnerror = true;
+				
 			}else{
 				con.println("Please enter a valid name.");
 			}
