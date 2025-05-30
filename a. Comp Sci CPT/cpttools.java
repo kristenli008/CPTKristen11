@@ -31,7 +31,7 @@ public class cpttools{
 				
 				for(intCount = 0; intCount < intCol; intCount++){					
 					strArray[intCount][0] = textfile.readLine();
-					strArray[intCount][1] = Integer.toString((int)(Math.random() * 1000));
+					strArray[intCount][1] = Integer.toString((int)(Math.random() * 100000));
 					
 				}
 			}
@@ -54,10 +54,6 @@ public class cpttools{
 					}
 				}
 			}
-			
-			// for(intCount = 0; intCount < intCol; intCount++){
-			// 	con.println(strArray[intCount][0] + " - " + strArray[intCount][1]);
-			// }
 			
 			textfile.close();
 			return strArray;

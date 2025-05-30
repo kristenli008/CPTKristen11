@@ -15,7 +15,6 @@ public class bubbletest1{
 				
 		while(animes.eof() == false){
 			strRead = animes.readLine();
-			con.println(strRead);
 			intCols = intCols + 1;
 		}
 						
@@ -23,7 +22,7 @@ public class bubbletest1{
 		strArray = cpttools.randomsort(strFileName,intCols);
 		
 		for(intCount = 0; intCount < intCols; intCount++){
-			// con.println(strArray[intCount][0] + " - " + strArray[intCount][1]);
+			con.println(strArray[intCount][0] + " - " + strArray[intCount][1]);
 		}
 	}
 }
