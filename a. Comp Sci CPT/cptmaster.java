@@ -80,6 +80,7 @@ public class cptmaster{
 		}
 		
 		// closing files
+		con.clear();
 		animes.close();
 		boardgames.close();
 		cartoons.close();
@@ -95,13 +96,18 @@ public class cptmaster{
 			int intCount2;
 			// word variable
 			String strWord;
+			String strWordguess;
 			int intWrongtries;
 			String strLetter;
+			int intGuesslettercount;
 			int intLettercount;
 			// word variable but with indiv letters
 			String strWordarray[][];
+			String strGuessarray[][];
 			
+			// boolean loops
 			boolean blnPlayagain = true;
+			boolean blnGuess = false;
 			
 			// loop to keep playing
 			while(blnPlayagain == true){
@@ -109,22 +115,47 @@ public class cptmaster{
 				for(intCount = 0; intCount < intCols; intCount++){
 					
 					// setting up word variable
-					strWord = strArray[0][intCount];
-					con.println(strWord);
+					strWord = strArray[intCount][0];
+					// con.println(strWord);
 					
 					// counting letter count in word
 					intLettercount = strWord.length();
-					con.println(intLettercount);
+					// con.println(intLettercount);
 										
 					// transferring letters to array
 					strWordarray = new String[intLettercount][2];
 					for(intCount2 = 1; intCount2 <= intLettercount; intCount2++){
 						// setting letter variable
 						strLetter = strWord.substring(intCount2-1, intCount2);
-						strWordarray[0][intCount2-1] = strLetter;
-						con.print(strWordarray[0][intCount2-1]);
+						strWordarray[intCount2-1][0] = strLetter;
+						// con.print(strWordarray[intCount2-1][0]);
 					}
 					
+					// TESTING: correct answer
+					con.println(strWord);
+					
+					// input guess
+					while(blnGuess == false){
+						con.println("What is your guess?");
+						strWordguess = con.readLine();
+						
+						// transferring guess string to array
+						intGuesslettercount = strWordguess.length();
+						strGuessarray = new String[intLettercount][2];
+						for(intCount2 = 1; intCount2 <= intGuesslettercount; intCount2++){
+							strLetter = strWordguess.substring(intCount2-1, intCount2);
+							strGuessarray[intCount2-1][0] = strLetter;
+							// con.println(strGuessarray[intCount2-1][0]);
+						}
+						
+						// checking if guess is correct
+						if(strWordguess.equals(strWord)){
+							con.println("That's correct!");
+							blnGuess = true;
+						}else{
+							con.println("That's wrong!");
+						}
+					}
 				}
 				
 				blnPlayagain = false;

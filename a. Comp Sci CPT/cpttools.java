@@ -19,7 +19,6 @@ public class cpttools{
 	}
 		
 	public static String[][] randomsort(String strFileName, int intCol){
-		Console con2 = new Console();
 			String strArray[][];
 			strArray = new String[intCol][2];
 			
