@@ -155,10 +155,13 @@ public class cptmaster{
 							if(strWordguess.equals(strWord)){
 								con.println("That's correct!");
 								blnGuess = true;
+								intScore = intScore + 1;
 							}else{
 								con.println("That's wrong!");
 							}
 						}
+						
+						con.println("TESTING: current score "+intScore);
 													
 						// resetting boolean
 						blnrun = false;
@@ -174,6 +177,7 @@ public class cptmaster{
 							}else if(strPlayagain.equalsIgnoreCase("n")){
 								blnPlayagain = false;
 								blnrun = true;
+								con.println("Your final score: "+intScore);
 							}else{
 								con.println("Please type in y or n.");
 							}
