@@ -41,7 +41,7 @@ public class cptmaster{
 				}
 				strThemename = "popular animes";
 				strArray = cpttools.randomsort(strThemename, intCols);
-				intScore = gameplay(strName, strArray, intCols);
+				intScore = gameplay(strName, strArray, intCols, con);
 				blnerror = true;
 				
 			}else if(strTheme.equalsIgnoreCase("board games")){
@@ -51,7 +51,7 @@ public class cptmaster{
 				}
 				strThemename = "board games";
 				strArray = cpttools.randomsort(strThemename, intCols);
-				intScore = gameplay(strName, strArray, intCols);
+				intScore = gameplay(strName, strArray, intCols, con);
 				blnerror = true;
 				
 			}else if(strTheme.equalsIgnoreCase("cartoons")){
@@ -61,7 +61,7 @@ public class cptmaster{
 				}
 				strThemename = "cartoons";
 				strArray = cpttools.randomsort(strThemename, intCols);
-				intScore = gameplay(strName, strArray, intCols);
+				intScore = gameplay(strName, strArray, intCols, con);
 				blnerror = true;
 				
 			}else if(strTheme.equalsIgnoreCase("digital art programs")){
@@ -71,7 +71,7 @@ public class cptmaster{
 				}
 				strThemename = "digital art programs";
 				strArray = cpttools.randomsort(strThemename, intCols);
-				intScore = gameplay(strName, strArray, intCols);
+				intScore = gameplay(strName, strArray, intCols, con);
 				blnerror = true;
 				
 			}else{
@@ -87,9 +87,8 @@ public class cptmaster{
 		artprograms.close();
 	}
 	
-	public static int gameplay(String strName, String strArray[][], int intCols){
-		Console con = new Console();
-		
+	public static int gameplay(String strName, String strArray[][], int intCols, Console con){
+				
 			// setting variables
 			int intScore = 0;
 			int intCount;
@@ -143,6 +142,7 @@ public class cptmaster{
 							strWordguess = con.readLine();
 							
 							// transferring guess string to array
+							// ALERT: not sure if necesssary
 							intGuesslettercount = strWordguess.length();
 							strGuessarray = new String[intLettercount][2];
 							for(intCount2 = 1; intCount2 <= intGuesslettercount; intCount2++){
@@ -152,7 +152,7 @@ public class cptmaster{
 							}
 							
 							// checking if guess is correct
-							if(strWordguess.equals(strWord)){
+							if(strWordguess.equalsIgnoreCase(strWord)){
 								con.println("That's correct!");
 								blnGuess = true;
 								intScore = intScore + 1;
@@ -160,9 +160,7 @@ public class cptmaster{
 								con.println("That's wrong!");
 							}
 						}
-						
-						con.println("TESTING: current score "+intScore);
-													
+																			
 						// resetting boolean
 						blnrun = false;
 						
