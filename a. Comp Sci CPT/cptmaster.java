@@ -101,59 +101,82 @@ public class cptmaster{
 			String strLetter;
 			int intGuesslettercount;
 			int intLettercount;
+			String strPlayagain;
 			// word variable but with indiv letters
 			String strWordarray[][];
 			String strGuessarray[][];
 			
 			// boolean loops
 			boolean blnPlayagain = true;
+			boolean blnrun = false;
 			boolean blnGuess = false;
 			
 			// loop to keep playing
 			while(blnPlayagain == true){
 				// loop to play until no more words
 				for(intCount = 0; intCount < intCols; intCount++){
-					
-					// setting up word variable
-					strWord = strArray[intCount][0];
-					// con.println(strWord);
-					
-					// counting letter count in word
-					intLettercount = strWord.length();
-					// con.println(intLettercount);
-										
-					// transferring letters to array
-					strWordarray = new String[intLettercount][2];
-					for(intCount2 = 1; intCount2 <= intLettercount; intCount2++){
-						// setting letter variable
-						strLetter = strWord.substring(intCount2-1, intCount2);
-						strWordarray[intCount2-1][0] = strLetter;
-						// con.print(strWordarray[intCount2-1][0]);
-					}
-					
-					// TESTING: correct answer
-					con.println(strWord);
-					
-					// input guess
-					while(blnGuess == false){
-						con.println("What is your guess?");
-						strWordguess = con.readLine();
+					if(blnPlayagain == true){
+						// setting up word variable
+						strWord = strArray[intCount][0];
+						// con.println(strWord);
 						
-						// transferring guess string to array
-						intGuesslettercount = strWordguess.length();
-						strGuessarray = new String[intLettercount][2];
-						for(intCount2 = 1; intCount2 <= intGuesslettercount; intCount2++){
-							strLetter = strWordguess.substring(intCount2-1, intCount2);
-							strGuessarray[intCount2-1][0] = strLetter;
-							// con.println(strGuessarray[intCount2-1][0]);
+						// counting letter count in word
+						intLettercount = strWord.length();
+						// con.println(intLettercount);
+											
+						// transferring letters to array
+						strWordarray = new String[intLettercount][2];
+						for(intCount2 = 1; intCount2 <= intLettercount; intCount2++){
+							// setting letter variable
+							strLetter = strWord.substring(intCount2-1, intCount2);
+							strWordarray[intCount2-1][0] = strLetter;
+							// con.print(strWordarray[intCount2-1][0]);
 						}
 						
-						// checking if guess is correct
-						if(strWordguess.equals(strWord)){
-							con.println("That's correct!");
-							blnGuess = true;
-						}else{
-							con.println("That's wrong!");
+						// TESTING: correct answer
+						con.println(strWord);
+						blnGuess = false;
+						
+						// input guess
+						while(blnGuess == false){
+							con.println("What is your guess?");
+							strWordguess = con.readLine();
+							
+							// transferring guess string to array
+							intGuesslettercount = strWordguess.length();
+							strGuessarray = new String[intLettercount][2];
+							for(intCount2 = 1; intCount2 <= intGuesslettercount; intCount2++){
+								strLetter = strWordguess.substring(intCount2-1, intCount2);
+								strGuessarray[intCount2-1][0] = strLetter;
+								// con.println(strGuessarray[intCount2-1][0]);
+							}
+							
+							// checking if guess is correct
+							if(strWordguess.equals(strWord)){
+								con.println("That's correct!");
+								blnGuess = true;
+							}else{
+								con.println("That's wrong!");
+							}
+						}
+													
+						// resetting boolean
+						blnrun = false;
+						
+						// play again
+						// WONT NEED BLNRUN WITH BUTTONS
+						while(blnrun == false){
+							con.println("Would you like to play the next word? y or n");
+							strPlayagain = con.readLine();
+								if(strPlayagain.equalsIgnoreCase("y")){
+								blnPlayagain = true;
+								blnrun = true;
+							}else if(strPlayagain.equalsIgnoreCase("n")){
+								blnPlayagain = false;
+								blnrun = true;
+							}else{
+								con.println("Please type in y or n.");
+							}
 						}
 					}
 				}
