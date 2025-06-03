@@ -47,7 +47,7 @@ public class cptmaster{
 			// drawing buttons			
 			con.fillRoundRect(50,100,200,50,40,40);
 			con.setDrawColor(new Color(97, 66, 143));
-			con.drawString("Popular Animes",60,100);
+			con.drawString("Popular Animes",65,105);
 			con.setDrawColor(new Color(241,235,250));
 			
 			con.fillRoundRect(260,100,200,50,40,40);
