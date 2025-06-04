@@ -40,21 +40,21 @@ public class cptmaster{
 		// con.println("Hello, "+strName+"!");
 
 		// getting theme choice
-		while(blnerror == false){
+		while(blnerror == false){			
 			con.println("Which theme would you like to play today?");
 			con.println("Please type in the theme name.");
 			
 			// drawing buttons			
-			con.fillRoundRect(50,100,200,50,40,40);
-			con.setDrawColor(new Color(97, 66, 143));
-			con.drawString("Popular Animes",65,105);
-			con.setDrawColor(new Color(241,235,250));
+			// con.fillRoundRect(50,100,200,50,40,40);
+			//con.setDrawColor(new Color(97, 66, 143));
+			//con.drawString("Popular Animes",65,105);
+			//con.setDrawColor(new Color(241,235,250));
 			
-			con.fillRoundRect(260,100,200,50,40,40);
+			//con.fillRoundRect(260,100,200,50,40,40);
 			
-			con.fillRoundRect(470,100,200,50,40,40);
+			//con.fillRoundRect(470,100,200,50,40,40);
 			
-			con.fillRoundRect(680,100,200,50,40,40);
+			//con.fillRoundRect(680,100,200,50,40,40);
 			
 			con.println("Popular Animes || Board Games || Cartoons || Digital Art Programs");
 			strTheme = con.readLine();
@@ -122,6 +122,7 @@ public class cptmaster{
 				artprograms.close();
 			}else{
 				con.println("Please enter a valid name.");
+				con.clear();
 			}
 		}
 		
@@ -131,6 +132,8 @@ public class cptmaster{
 	
 	public static int gameplay(String strName, String strArray[][], int intCols, Console con){
 				
+			con.clear();
+			
 			// setting variables
 			int intScore = 0;
 			int intCount;
@@ -138,7 +141,7 @@ public class cptmaster{
 			// word variable
 			String strWord;
 			String strWordguess;
-			int intWrongtries;
+			int intWrongtries = -1;
 			String strLetter;
 			int intGuesslettercount;
 			int intLettercount;
@@ -166,32 +169,50 @@ public class cptmaster{
 						// con.println(intLettercount);
 											
 						// transferring letters to array
-						strWordarray = new String[intLettercount][2];
-						for(intCount2 = 1; intCount2 <= intLettercount; intCount2++){
+						strWordarray = new String[intLettercount][3];
+						for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
 							// setting letter variable
-							strLetter = strWord.substring(intCount2-1, intCount2);
-							strWordarray[intCount2-1][0] = strLetter;
-							// con.print(strWordarray[intCount2-1][0]);
+							strLetter = strWord.substring(intCount2, intCount2+1);
+							strWordarray[intCount2][0] = strLetter;
+							// setting order of letters
+							strWordarray[intCount2][2] = Integer.toString(intCount2);
+							// con.print(strWordarray[intCount2][0]);
 						}
 						
 						// TESTING: correct answer
 						con.println(strWord);
 						blnGuess = false;
 						
+						// setting display word to null
+						strGuessarray = new String[intLettercount][3];
+						// setting order of letters
+						for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
+							strGuessarray[intCount2][2] = Integer.toString(intCount2);
+						}
+						strWordarray = cpttools.letterbubblesort(strWordarray, intLettercount);
+						for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
+							strGuessarray[intCount2][0] = "_ ";
+							con.print(strGuessarray[intCount2][0]);
+						}
+						
 						// input guess
 						while(blnGuess == false){
+							for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
+								con.print(strGuessarray[intCount2][0]);
+							}
+							con.println("");
 							con.println("What is your guess?");
 							strWordguess = con.readLine();
 							
 							// transferring guess string to array
 							// ALERT: not sure if necesssary
-							intGuesslettercount = strWordguess.length();
-							strGuessarray = new String[intLettercount][2];
-							for(intCount2 = 1; intCount2 <= intGuesslettercount; intCount2++){
-								strLetter = strWordguess.substring(intCount2-1, intCount2);
-								strGuessarray[intCount2-1][0] = strLetter;
+							// intGuesslettercount = strWordguess.length();
+							// strGuessarray = new String[intLettercount][2];
+							// for(intCount2 = 1; intCount2 <= intGuesslettercount; intCount2++){
+								// strLetter = strWordguess.substring(intCount2-1, intCount2);
+								// strGuessarray[intCount2-1][0] = strLetter;
 								// con.println(strGuessarray[intCount2-1][0]);
-							}
+							// }
 							
 							// checking if guess is correct
 							if(strWordguess.equalsIgnoreCase(strWord)){
@@ -200,9 +221,13 @@ public class cptmaster{
 								intScore = intScore + 1;
 							}else{
 								con.println("That's wrong!");
+								intWrongtries = intWrongtries + 1;
+								strGuessarray[intWrongtries][0] = strWordarray[intWrongtries][0] + " ";
 							}
 						}
-																			
+						
+						// (int)(Math.random{} * [number of letters]
+						
 						// resetting boolean
 						blnrun = false;
 						
