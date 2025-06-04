@@ -138,6 +138,7 @@ public class cptmaster{
 			int intScore = 0;
 			int intCount;
 			int intCount2;
+			int intTemp;
 			// word variable
 			String strWord;
 			String strWordguess;
@@ -222,7 +223,13 @@ public class cptmaster{
 							}else{
 								con.println("That's wrong!");
 								intWrongtries = intWrongtries + 1;
-								strGuessarray[intWrongtries][0] = strWordarray[intWrongtries][0] + " ";
+								// strGuessarray[intWrongtries][0] = strWordarray[intWrongtries][0] + " ";
+								for(intCount2 = 0; intCount2 < intLettercount; intCount++){
+									intTemp = String.toInteger(strWordarray[intCount2][2]);
+									if(intTemp == intWrongtries){
+										strGuessarray[intCount2][0] = strWordarray[intCount2][0];
+									}
+								}
 							}
 						}
 						

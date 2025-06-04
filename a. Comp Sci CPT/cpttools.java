@@ -59,7 +59,6 @@ public class cpttools{
 	}
 	
 	public static String[][] letterbubblesort(String strArray[][], int intCol){
-		Console con = new Console();
 		int intCount;
 		int intCount2;
 		double dblRandom;
@@ -90,11 +89,11 @@ public class cpttools{
 			strArray[intCount][1] = Integer.toString(intCount);
 		}
 		
-		con.println("");
+		//con.println("");
 		
-		for(intCount = 0; intCount < intCol; intCount++){
-			con.println(strArray[intCount][0] + " - " + strArray[intCount][1]);
-		}
+		//for(intCount = 0; intCount < intCol; intCount++){
+			//con.println(strArray[intCount][0] + " - " + strArray[intCount][1]);
+		//}
 		
 		return strArray;
 	}
