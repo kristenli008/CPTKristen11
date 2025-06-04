@@ -1,9 +1,9 @@
-clip studio paint
+clipstudiopaint
 ibispaint
 procreate
 medibang
-autodesk sketchbook
-paint tool sai
+autodesksketchbook
+painttoolsai
 mspaint
 photoshop
-adobe fresco
+adobefresco

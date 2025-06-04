@@ -1,14 +1,14 @@
 amphibia
-the owl house
-gravity falls
-rick and morty
-infinity train
-the hollow
-the amazing world of gumball
-bee and puppycat
-inside job
-adventure time
-the dragon prince
-scavengers reign
-kipo and the age of wonderbeasts
-steven universe
+theowlhouse
+gravityfalls
+rickandmorty
+infinitytrain
+thehollow
+theamazingworldofgumball
+beeandpuppycat
+insidejob
+adventuretime
+the dragonprince
+scavengersreign
+kipoandtheageofwonderbeasts
+stevenuniverse
