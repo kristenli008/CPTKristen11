@@ -194,7 +194,7 @@ public class cptmaster{
 						strWordarray = cpttools.letterbubblesort(strWordarray, intLettercount);
 						for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
 							strGuessarray[intCount2][0] = "_ ";
-							con.print(strGuessarray[intCount2][0]);
+							// con.print(strGuessarray[intCount2][0]);
 						}
 						
 						// input guess
@@ -226,16 +226,27 @@ public class cptmaster{
 								intWrongtries = intWrongtries + 1;
 								con.println("wrong tries: "+intWrongtries);
 								// strGuessarray[intWrongtries][0] = strWordarray[intWrongtries][0] + " ";
-								for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
-									intTemp = Integer.parseInt(strWordarray[intCount2][2]);
+								/* for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
+									intTemp = Integer.parseInt(strWordarray[intCount2][1]);
 									// con.println("intTemp: "+intTemp);
 									if(intTemp == intWrongtries){
-										strGuessarray[intCount2][0] = strWordarray[intCount2][0] + " ";
+										strGuessarray[intCount2][0] = strWordarray[Integer.parseInt(strGuessarray[intCount2][2])][0] + " ";
 										con.println("letter replaced: "+strWordarray[intCount2][0]);
 										con.println("random order: "+strWordarray[intCount2][1]);
 										con.println("order: "+strWordarray[intCount2][2]);
 									}
 								}
+								*/
+								
+								// stolen off nicole
+								
+								intTemp = ((int)(Math.random()*intLettercount));
+								while(strGuessarray[intTemp][0].equals("_ ")){
+									intTemp = ((int)(Math.random()*intLettercount));
+									System.out.println("Random number: "+intTemp);
+									strGuessarray[intTemp][0] = strWordarray[intTemp][0];
+								}
+								
 							}
 						}
 						
