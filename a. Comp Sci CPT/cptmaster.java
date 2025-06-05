@@ -142,7 +142,7 @@ public class cptmaster{
 			// word variable
 			String strWord;
 			String strWordguess;
-			int intWrongtries = -1;
+			int intWrongtries = 0;
 			String strLetter;
 			int intGuesslettercount;
 			int intLettercount;
@@ -155,6 +155,7 @@ public class cptmaster{
 			boolean blnPlayagain = true;
 			boolean blnrun = false;
 			boolean blnGuess = false;
+			boolean blnletter = false;
 			
 			// loop to keep playing
 			while(blnPlayagain == true){
@@ -176,7 +177,7 @@ public class cptmaster{
 							strLetter = strWord.substring(intCount2, intCount2+1);
 							strWordarray[intCount2][0] = strLetter;
 							// setting order of letters
-							strWordarray[intCount2][2] = Integer.toString(intCount2);
+							strWordarray[intCount2][2] = Integer.toString(intCount2+1);
 							// con.print(strWordarray[intCount2][0]);
 						}
 						
@@ -223,11 +224,16 @@ public class cptmaster{
 							}else{
 								con.println("That's wrong!");
 								intWrongtries = intWrongtries + 1;
+								con.println("wrong tries: "+intWrongtries);
 								// strGuessarray[intWrongtries][0] = strWordarray[intWrongtries][0] + " ";
-								for(intCount2 = 0; intCount2 < intLettercount; intCount++){
-									intTemp = String.toInteger(strWordarray[intCount2][2]);
+								for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
+									intTemp = Integer.parseInt(strWordarray[intCount2][2]);
+									// con.println("intTemp: "+intTemp);
 									if(intTemp == intWrongtries){
-										strGuessarray[intCount2][0] = strWordarray[intCount2][0];
+										strGuessarray[intCount2][0] = strWordarray[intCount2][0] + " ";
+										con.println("letter replaced: "+strWordarray[intCount2][0]);
+										con.println("random order: "+strWordarray[intCount2][1]);
+										con.println("order: "+strWordarray[intCount2][2]);
 									}
 								}
 							}

@@ -59,6 +59,7 @@ public class cpttools{
 	}
 	
 	public static String[][] letterbubblesort(String strArray[][], int intCol){
+		// Console con = new Console();
 		int intCount;
 		int intCount2;
 		double dblRandom;
@@ -79,6 +80,10 @@ public class cpttools{
 					strTemp = strArray[intCount][1];
 					strArray[intCount][1] = strArray[intCount+1][1];
 					strArray[intCount+1][1] = strTemp;
+					
+					strTemp = strArray[intCount][2];
+					strArray[intCount][2] = strArray[intCount+1][2];
+					strArray[intCount+1][2] = strTemp;
 				}
 			}
 		}
