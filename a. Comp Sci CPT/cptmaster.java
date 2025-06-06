@@ -11,7 +11,7 @@ public class cptmaster{
 		// color legend
 		// 150,122,158 = middle gray purple, bg
 		// 241,235,250 = extremely light purple, white font color
-		// 97, 66, 143 = darker purple, dark font color
+		// 88, 73, 110 = darker purple, dark font color
 		
 		// logo
 		// con.println("insert logo");
@@ -35,32 +35,41 @@ public class cptmaster{
 		TextInputFile mastertext = new TextInputFile("themes.txt");
 		
 		// setting name
-		//con.println("Please enter your name:");
-		//strName = con.readLine();
+		con.println("Please enter your name:");
+		strName = con.readLine();
 		
-		// con.println("Hello, "+strName+"!");
-
 		// getting theme choice
 		while(blnerror == false){
 			con.clear();
 			if(blnvalid == true){
-				con.println("Please enter a valid name.");
+				con.println("Please enter a valid theme name.");
 			}
-						
+			
+			con.println("Hello, "+strName+"!");
 			con.println("Which theme would you like to play today?");
 			con.println("Please type in the theme name.");
 			
 			// drawing buttons			
-			// con.fillRoundRect(50,100,200,50,40,40);
-			//con.setDrawColor(new Color(97, 66, 143));
-			//con.drawString("Popular Animes",65,105);
-			//con.setDrawColor(new Color(241,235,250));
+			con.fillRoundRect(50,100,200,50,40,40);
+			con.setDrawColor(new Color(88, 73, 110));
+			con.drawString("Popular Animes",65,105);
+			con.setDrawColor(new Color(241,235,250));
 			
-			//con.fillRoundRect(260,100,200,50,40,40);
+			con.fillRoundRect(260,100,200,50,40,40);
+			con.setDrawColor(new Color(88, 73, 110));
+			con.drawString("Popular Animes",65,105);
+			con.setDrawColor(new Color(241,235,250));
 			
-			//con.fillRoundRect(470,100,200,50,40,40);
+			con.fillRoundRect(470,100,200,50,40,40);
+			con.setDrawColor(new Color(88, 73, 110));
+			con.drawString("Popular Animes",65,105);
+			con.setDrawColor(new Color(241,235,250));
 			
-			//con.fillRoundRect(680,100,200,50,40,40);
+			con.fillRoundRect(680,100,200,50,40,40);
+			con.setDrawColor(new Color(88, 73, 110));
+			con.drawString("Popular Animes",65,105);
+			con.setDrawColor(new Color(241,235,250));
+			
 			
 			con.println("Popular Animes || Board Games || Cartoons || Digital Art Programs");
 			strTheme = con.readLine();
@@ -143,6 +152,7 @@ public class cptmaster{
 			int intCount;
 			int intCount2;
 			int intTemp;
+			String strLeaderboard;
 			// word variable
 			String strWord;
 			String strWordguess;
@@ -158,15 +168,21 @@ public class cptmaster{
 			// boolean loops
 			boolean blnPlayagain = true;
 			boolean blnrun = false;
+			boolean blnrun2 = true;
 			boolean blnGuess = false;
 			boolean blnletter = false;
 			boolean blnrunout = false;
+			boolean blnyn = false;
 			
 			// loop to keep playing
 			while(blnPlayagain == true){
 				// loop to play until no more words
 				for(intCount = 0; intCount < intCols; intCount++){
 					if(blnPlayagain == true){
+						
+						blnPlayagain = true;
+						intWrongtries = 0;
+						
 						// setting up word variable
 						strWord = strArray[intCount][0];
 						// con.println(strWord);
@@ -186,8 +202,6 @@ public class cptmaster{
 							// con.print(strWordarray[intCount2][0]);
 						}
 						
-						// TESTING: correct answer
-						// con.println(strWord);
 						blnGuess = false;
 						
 						// setting display word to null
@@ -206,22 +220,18 @@ public class cptmaster{
 						while(blnGuess == false){
 							con.clear();
 							
+							// TESTING: correct answer
+							con.println(strWord);
+							
 							for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
 								con.print(strGuessarray[intCount2][0]);
 							}
 							con.println("");
+							if(intWrongtries > 0){
+								con.println("That's incorrect!");
+							}
 							con.println("What is your guess?");
 							strWordguess = con.readLine();
-							
-							// transferring guess string to array
-							// ALERT: not sure if necesssary
-							// intGuesslettercount = strWordguess.length();
-							// strGuessarray = new String[intLettercount][2];
-							// for(intCount2 = 1; intCount2 <= intGuesslettercount; intCount2++){
-								// strLetter = strWordguess.substring(intCount2-1, intCount2);
-								// strGuessarray[intCount2-1][0] = strLetter;
-								// con.println(strGuessarray[intCount2-1][0]);
-							// }
 							
 							// checking if guess is correct
 							if(strWordguess.equalsIgnoreCase(strWord)){
@@ -229,7 +239,6 @@ public class cptmaster{
 								blnGuess = true;
 								intScore = intScore + 1;
 							}else{
-								con.println("That's wrong!");
 								intWrongtries = intWrongtries + 1;
 								// con.println("wrong tries: "+intWrongtries);
 
@@ -243,18 +252,26 @@ public class cptmaster{
 								
 							}
 						}
-						
-						// (int)(Math.random{} * [number of letters]
-						
+												
 						// resetting boolean
 						blnrun = false;
 						
 						// play again
 						// WONT NEED BLNRUN WITH BUTTONS
 						while(blnrun == false){
+							con.clear();
+							
+							if(blnyn == true){
+								con.println("Please type y or n.");
+							}
+							
 							if(blnrunout == true){
 								con.println("You have run out of guesses!");
+							}else if(blnrunout == false){
+								con.println("You guessed the word!");
 							}
+							
+							con.println("The correct answer was: "+strWord);
 							con.println("Would you like to play the next word? y or n");
 							strPlayagain = con.readLine();
 								if(strPlayagain.equalsIgnoreCase("y")){
@@ -263,10 +280,32 @@ public class cptmaster{
 							}else if(strPlayagain.equalsIgnoreCase("n")){
 								blnPlayagain = false;
 								blnrun = true;
+								blnrun2 = true;
+								blnyn = false;
 								con.println("Your final score: "+intScore);
+								while(blnrun2 == true){
+									if(blnyn == true){
+										con.println("Please type in y or n.");
+									}
+									con.println("Would you like to put your name on the leaderboard? y or n");
+									strLeaderboard = con.readLine();
+									if(strLeaderboard.equalsIgnoreCase("y")){
+										blnrun2 = false;
+										TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
+										leaderboard.println(strName);
+										leaderboard.println(intScore);
+										leaderboard.close();
+										
+										con.println("Your name has been added to the leaderboard!");
+										con.println(strName + " - " + intScore);
+									}else if(strLeaderboard.equalsIgnoreCase("n")){
+										blnrun2 = false;
+									}else{
+										blnyn = true;
+									}
+								}
 							}else{
-								con.clear();
-								con.println("Please type in y or n.");
+								blnyn = true;
 							}
 						}
 					}
