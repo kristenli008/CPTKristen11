@@ -25,6 +25,7 @@ public class cptmaster{
 		String strThemename;
 		int intScore;
 		boolean blnerror = false;
+		boolean blnvalid = false;
 		
 		// setting textinputfiles
 		// TextInputFile animes = new TextInputFile("popular animes.txt");
@@ -40,7 +41,12 @@ public class cptmaster{
 		// con.println("Hello, "+strName+"!");
 
 		// getting theme choice
-		while(blnerror == false){			
+		while(blnerror == false){
+			con.clear();
+			if(blnvalid == true){
+				con.println("Please enter a valid name.");
+			}
+						
 			con.println("Which theme would you like to play today?");
 			con.println("Please type in the theme name.");
 			
@@ -121,13 +127,11 @@ public class cptmaster{
 				
 				artprograms.close();
 			}else{
-				con.println("Please enter a valid name.");
-				con.clear();
+				blnvalid = true;
 			}
 		}
 		
 		// closing files
-		con.clear();
 	}
 	
 	public static int gameplay(String strName, String strArray[][], int intCols, Console con){
@@ -156,6 +160,7 @@ public class cptmaster{
 			boolean blnrun = false;
 			boolean blnGuess = false;
 			boolean blnletter = false;
+			boolean blnrunout = false;
 			
 			// loop to keep playing
 			while(blnPlayagain == true){
@@ -182,7 +187,7 @@ public class cptmaster{
 						}
 						
 						// TESTING: correct answer
-						con.println(strWord);
+						// con.println(strWord);
 						blnGuess = false;
 						
 						// setting display word to null
@@ -199,6 +204,8 @@ public class cptmaster{
 						
 						// input guess
 						while(blnGuess == false){
+							con.clear();
+							
 							for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
 								con.print(strGuessarray[intCount2][0]);
 							}
@@ -224,27 +231,14 @@ public class cptmaster{
 							}else{
 								con.println("That's wrong!");
 								intWrongtries = intWrongtries + 1;
-								con.println("wrong tries: "+intWrongtries);
-								// strGuessarray[intWrongtries][0] = strWordarray[intWrongtries][0] + " ";
-								/* for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
-									intTemp = Integer.parseInt(strWordarray[intCount2][1]);
-									// con.println("intTemp: "+intTemp);
-									if(intTemp == intWrongtries){
-										strGuessarray[intCount2][0] = strWordarray[Integer.parseInt(strGuessarray[intCount2][2])][0] + " ";
-										con.println("letter replaced: "+strWordarray[intCount2][0]);
-										con.println("random order: "+strWordarray[intCount2][1]);
-										con.println("order: "+strWordarray[intCount2][2]);
-									}
-								}
-								*/
+								// con.println("wrong tries: "+intWrongtries);
+
+								strGuessarray[Integer.parseInt(strWordarray[intWrongtries][2])-1][0] = strWordarray[intWrongtries][0] + " ";
+								con.println(strGuessarray[Integer.parseInt(strWordarray[intWrongtries][2])-1][0]);
 								
-								// stolen off nicole
-								
-								intTemp = ((int)(Math.random()*intLettercount));
-								while(strGuessarray[intTemp][0].equals("_ ")){
-									intTemp = ((int)(Math.random()*intLettercount));
-									System.out.println("Random number: "+intTemp);
-									strGuessarray[intTemp][0] = strWordarray[intTemp][0];
+								if(intWrongtries >= 7){
+									blnGuess = true;
+									blnrunout = true;
 								}
 								
 							}
@@ -258,6 +252,9 @@ public class cptmaster{
 						// play again
 						// WONT NEED BLNRUN WITH BUTTONS
 						while(blnrun == false){
+							if(blnrunout == true){
+								con.println("You have run out of guesses!");
+							}
 							con.println("Would you like to play the next word? y or n");
 							strPlayagain = con.readLine();
 								if(strPlayagain.equalsIgnoreCase("y")){
@@ -268,6 +265,7 @@ public class cptmaster{
 								blnrun = true;
 								con.println("Your final score: "+intScore);
 							}else{
+								con.clear();
 								con.println("Please type in y or n.");
 							}
 						}
