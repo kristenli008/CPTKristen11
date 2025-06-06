@@ -53,7 +53,7 @@ public class cptmaster{
 			con.fillRoundRect(50,100,200,50,40,40);
 			con.setDrawColor(new Color(88, 73, 110));
 			con.drawString("Popular Animes",65,105);
-			con.setDrawColor(new Color(241,235,250));
+			con.setDrawColor(new Color(241,235,250)); 
 			
 			con.fillRoundRect(260,100,200,50,40,40);
 			con.setDrawColor(new Color(88, 73, 110));
