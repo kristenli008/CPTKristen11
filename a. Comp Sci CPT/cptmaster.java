@@ -52,26 +52,37 @@ public class cptmaster{
 			// drawing buttons			
 			con.fillRoundRect(50,100,200,50,40,40);
 			con.setDrawColor(new Color(88, 73, 110));
-			con.drawString("Popular Animes",65,105);
+			con.drawString("Popular Animes",65,107);
 			con.setDrawColor(new Color(241,235,250)); 
 			
 			con.fillRoundRect(260,100,200,50,40,40);
 			con.setDrawColor(new Color(88, 73, 110));
-			con.drawString("Popular Animes",65,105);
+			con.drawString("Board Games",297,107);
 			con.setDrawColor(new Color(241,235,250));
 			
 			con.fillRoundRect(470,100,200,50,40,40);
 			con.setDrawColor(new Color(88, 73, 110));
-			con.drawString("Popular Animes",65,105);
+			con.drawString("Cartoons",520,107);
 			con.setDrawColor(new Color(241,235,250));
 			
 			con.fillRoundRect(680,100,200,50,40,40);
 			con.setDrawColor(new Color(88, 73, 110));
-			con.drawString("Popular Animes",65,105);
+			con.drawString("Art Programs",710,107);
 			con.setDrawColor(new Color(241,235,250));
 			
+			// button interaction
 			
-			con.println("Popular Animes || Board Games || Cartoons || Digital Art Programs");
+			int intCursorx = 0;
+			int intCursory = 0;
+			int intMousebutton = 0;
+			
+			intCursorx = con.currentMouseX();
+			intCursory = con.currentMouseY();
+			
+			System.out.println("x: "+intCursorx);
+			System.out.println("y: "+intCursory);
+			
+			// con.println("Popular Animes || Board Games || Cartoons || Art Programs");
 			strTheme = con.readLine();
 			String strArray[][];
 			String strRead;
