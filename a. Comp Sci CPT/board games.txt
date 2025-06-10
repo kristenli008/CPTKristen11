@@ -1,7 +1,7 @@
 settlersofcatan
 monopoly
 scrabble
-the gameoflife
+thegameoflife
 checkers
 battleship
 codenames
