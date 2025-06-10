@@ -263,12 +263,44 @@ public class cptmaster{
 							while(blnGuess == false){
 								con.clear();
 								
+								
 								// TESTING: correct answer
 								con.println(strWord);
 								
 								for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
 									con.print(strGuessarray[intCount2][0]);
 								}
+								
+								// drawing hangman
+								con.setDrawColor(new Color(241,235,250));
+								// hanging pole
+								con.drawLine(800,90,800,70);
+								con.drawLine(800,70,710,70);
+								con.drawLine(710,70,710,350);
+								con.drawLine(660,350,880,350);
+								
+								// stickman ----
+								if(intWrongtries == 1){
+									// head
+									con.drawOval(770,90,60,60);
+									
+								}else if(intWrongtries == 2){
+									// body
+									con.drawLine(800,150,800,250);
+								}else if(intWrongtries == 3){
+									// left leg
+									con.drawLine(800,250,750,320);
+								}else if(intWrongtries == 4){
+									// right leg
+									con.drawLine(800,250,850,320);
+								}else if(intWrongtries == 5){
+									// left arm
+									con.drawLine(800,160,750,200);
+								}else if(intWrongtries == 6){
+									// right arm
+									con.drawLine(800,160,850,200);
+								}
+								
 								con.println("");
 								if(intWrongtries > 0){
 									con.println("That's incorrect!");
@@ -310,8 +342,18 @@ public class cptmaster{
 								
 								if(blnrunout == true){
 									con.println("You have run out of guesses!");
+									// dead face
+									con.drawLine(782,110,790,118);
+									con.drawLine(790,110,782,118);
+									con.drawLine(818,110,810,118);
+									con.drawLine(810,110,818,118);
+									con.drawLine(787,132,813,132);
 								}else if(blnrunout == false){
 									con.println("You guessed the word!");
+									// happy face
+									con.fillOval(780,107,5,5);
+									con.fillOval(815,107,5,5);
+									con.fillArc(779,109,43,28,180,180);
 								}
 								
 								con.println("The correct answer was: "+strWord);
@@ -334,6 +376,7 @@ public class cptmaster{
 								if(strPlayagain.equalsIgnoreCase("y")){
 									blnPlayagain = true;
 									blnrun = true;
+									con.setBackgroundColor(new Color(150,122,158));
 								}else if(strPlayagain.equalsIgnoreCase("n")){
 									blnPlayagain = false;
 									blnrun = true;
