@@ -418,4 +418,99 @@ public class cptmaster{
 			
 		return intScore;
 	}
+	
+	public static Console leaderboard(Console con){
+		// clearing
+		con.clear();
+		con.setBackgroundColor(new Color(150,122,158));
+		
+		// variables (sorting);
+		TextInputFile leaderbd = new TextInputFile("leaderboard.txt");
+		String strArray[][];
+		String strName;
+		String strLine;
+		int intScore;
+		int intCount;
+		int intCount2;
+		int intRows = 0;
+		String strTemp;
+		
+		// setting array
+		while(leaderbd.eof() == false){
+			strLine = leaderbd.readLine();
+			intRows++;
+		}
+		
+		// System.out.println(intRows);
+		strArray = new String[intRows][2];
+		
+		// resetting file
+		leaderbd.close();
+		TextInputFile leaderbd2 = new TextInputFile("leaderboard.txt");
+		
+		// transferring text file to array
+		for(intCount = 1; intCount <= intRows/2; intCount++){
+			strArray[intCount-1][0] = leaderbd2.readLine();
+			strArray[intCount-1][1] = leaderbd2.readLine();
+			System.out.println(strArray[intCount-1][0]+" - "+strArray[intCount-1][1]);
+		}
+		
+		leaderbd2.close();
+		
+		// bubble sorting array
+		for(intCount = 0; intCount < (intRows/2)-1; intCount++){
+			for(intCount2 = 0; intCount2 < (intRows/2)-1; intCount2++){
+				System.out.println("Current count: "+intCount2);
+				System.out.println(strArray[intCount2][1]);
+				System.out.println(strArray[intCount2+1][1]);
+				if(Integer.parseInt(strArray[intCount2][1]) < Integer.parseInt(strArray[intCount2+1][1])){
+					strTemp = strArray[intCount2+1][0];
+					strArray[intCount2+1][0] = strArray[intCount2][0];
+					strArray[intCount2][0] = strTemp;
+					
+					strTemp = strArray[intCount2+1][1];
+					strArray[intCount2+1][1] = strArray[intCount2][1];
+					strArray[intCount2][1] = strTemp;
+				}
+			}
+		}
+		
+		// printing array back to leaderboard text file
+		TextOutputFile leaderbdout = new TextOutputFile("leaderboard.txt");
+		
+		for(intCount = 0; intCount < intRows/2; intCount++){
+			System.out.println(strArray[intCount][0]+" - "+strArray[intCount][1]);
+			leaderbdout.println(strArray[intCount][0]);
+			leaderbdout.println(strArray[intCount][1]);
+		}
+		
+		leaderbdout.close();
+		
+		// variables (printing)
+		int intScore2;
+		int intRank = 0;
+		TextInputFile leaderbd3 = new TextInputFile("leaderboard.txt");
+		
+		con.println("");
+		con.println("");
+		con.println("Current leaderboard:");
+		while(leaderbd3.eof() == false){
+			intRank = intRank + 1;
+			strLine = leaderbd3.readLine();
+			con.println("#"+intRank+": "+strLine);
+			intScore2 = Integer.parseInt(leaderbd3.readLine());
+			con.println("Score: "+intScore2);
+		}
+		
+		// return buttons
+		// variables
+		int intMousex;
+		int intMousey;
+		int intMousebut;
+		
+		// buttons
+		
+		
+		return con;
+	}
 }
