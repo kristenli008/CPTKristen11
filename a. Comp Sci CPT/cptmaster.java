@@ -28,10 +28,7 @@ public class cptmaster{
 		boolean blnvalid = false;
 		
 		// setting textinputfiles
-		// TextInputFile animes = new TextInputFile("popular animes.txt");
-		// TextInputFile boardgames = new TextInputFile("board games.txt");
-		// TextInputFile cartoons = new TextInputFile("cartoons.txt");
-		// TextInputFile artprograms = new TextInputFile("digital art programs.txt");
+
 		TextInputFile mastertext = new TextInputFile("themes.txt");
 		
 		// setting name
@@ -200,22 +197,10 @@ public class cptmaster{
 			boolean blnyn = false;
 						
 			// loop to track mouse
-			int intmousex;
-			int intmousey;
-			int intmousebut;
+			int intmousex = 0;
+			int intmousey = 0;
+			int intmousebut = 0;
 			int intnum = 1;
-			
-			while(intnum == 1){
-				
-				intmousex = con.currentMouseX();
-				intmousey = con.currentMouseY();
-				intmousebut = con.currentMouseButton();
-				
-				/*
-				System.out.println("x: "+intmousex);
-				System.out.println("y: "+intmousey);
-				System.out.println("button: "+intmousebut);
-				* */
 				
 				// loop to keep playing
 				while(blnPlayagain == true){
@@ -269,6 +254,36 @@ public class cptmaster{
 								for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
 									con.print(strGuessarray[intCount2][0]);
 								}
+								
+								// drawing hangman
+								con.setDrawColor(new Color(241,235,250));
+								// hanging pole
+								con.drawLine(800,90,800,70);
+								con.drawLine(800,70,710,70);
+								con.drawLine(710,70,710,350);
+								con.drawLine(660,350,880,350);
+								
+								// stickman ----
+								if(intWrongtries == 1){
+									// head
+									con.drawOval(770,90,60,60);
+								}else if(intWrongtries == 2){
+									// body
+									con.drawLine(800,150,800,250);
+								}else if(intWrongtries == 3){
+									// left leg
+									con.drawLine(800,250,750,320);
+								}else if(intWrongtries == 4){
+									// right leg
+									con.drawLine(800,250,850,320);
+								}else if(intWrongtries == 5){
+									// left arm
+									con.drawLine(800,160,750,200);
+								}else if(intWrongtries == 6){
+									// right arm
+									con.drawLine(800,160,850,200);
+								}
+			
 								con.println("");
 								if(intWrongtries > 0){
 									con.println("That's incorrect!");
@@ -304,14 +319,20 @@ public class cptmaster{
 							while(blnrun == false){
 								con.clear();
 								
-								if(blnyn == true){
-									con.println("Please type y or n.");
-								}
-								
 								if(blnrunout == true){
 									con.println("You have run out of guesses!");
+									// dead face
+									con.drawLine(782,110,790,118);
+									con.drawLine(790,110,782,118);
+									con.drawLine(818,110,810,118);
+									con.drawLine(810,110,818,118);
+									con.drawLine(787,132,813,132);
 								}else if(blnrunout == false){
 									con.println("You guessed the word!");
+									// happy face
+									con.fillOval(780,107,5,5);
+									con.fillOval(815,107,5,5);
+									con.fillArc(779,109,43,28,180,180);
 								}
 								
 								con.println("The correct answer was: "+strWord);
@@ -321,48 +342,58 @@ public class cptmaster{
 								con.setDrawColor(new Color(241,235,250));
 								con.fillRoundRect(50,90,100,50,40,40);
 								con.setDrawColor(new Color(88, 73, 110));
-								con.drawString("Yes",65,107);
+								con.drawString("Yes",73,100);
 								con.setDrawColor(new Color(241,235,250)); 
 								
-								con.fillRoundRect(260,90,200,50,40,40);
+								con.fillRoundRect(260,90,100,50,40,40);
 								con.setDrawColor(new Color(88, 73, 110));
-								con.drawString("No",65,107);
+								con.drawString("No",283,100);
 								con.setDrawColor(new Color(241,235,250));
 								
-								strPlayagain = con.readLine();
-								
-								if(strPlayagain.equalsIgnoreCase("y")){
-									blnPlayagain = true;
-									blnrun = true;
-								}else if(strPlayagain.equalsIgnoreCase("n")){
-									blnPlayagain = false;
-									blnrun = true;
-									blnrun2 = true;
-									blnyn = false;
-									con.println("Your final score: "+intScore);
-									while(blnrun2 == true){
-										if(blnyn == true){
-											con.println("Please type in y or n.");
-										}
-										con.println("Would you like to put your name on the leaderboard? y or n");
-										strLeaderboard = con.readLine();
-										if(strLeaderboard.equalsIgnoreCase("y")){
-											blnrun2 = false;
-											TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
-											leaderboard.println(strName);
-											leaderboard.println(intScore);
-											leaderboard.close();
-											
-											con.println("Your name has been added to the leaderboard!");
-											con.println(strName + " - " + intScore);
-										}else if(strLeaderboard.equalsIgnoreCase("n")){
-											blnrun2 = false;
-										}else{
-											blnyn = true;
+								// strPlayagain = con.readLine();
+								intnum = 1;
+								while(intnum == 1){
+										intmousex = con.currentMouseX();
+										intmousey = con.currentMouseY();
+										intmousebut = con.currentMouseButton();
+										
+										System.out.println("x: "+intmousex);
+										System.out.println("y: "+intmousey);
+										System.out.println("button: "+intmousebut);
+									
+									if(intmousex > 50 && intmousex < 150 && intmousey < 140 && intmousey > 90 && intmousebut == 1){
+										blnPlayagain = true;
+										blnrun = true;
+										con.setBackgroundColor(new Color(150,122,158));
+										System.out.println("clicked yes");
+										intnum = 0;
+										System.out.println("intnum: "+intnum);
+									}else if(intmousex > 260 && intmousex < 360 && intmousey < 140 && intmousey > 90 && intmousebut == 1){
+										blnPlayagain = false;
+										blnrun = true;
+										blnrun2 = true;
+										intnum = 1;
+										
+										con.clear();
+										
+										con.println("Your final score: "+intScore);
+										while(blnrun2 == true){
+											con.println("Would you like to put your name on the leaderboard? y or n");
+											if(intmousex > 50 && intmousex < 150 && intmousey < 140 && intmousey > 90 && intmousebut == 1){
+												System.out.println("clicked yes leaderboard");
+												blnrun2 = false;
+												TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
+												leaderboard.println(strName);
+												leaderboard.println(intScore);
+												leaderboard.close();
+												
+												con.println("Your name has been added to the leaderboard!");
+												con.println(strName + " - " + intScore);
+											}else if(intmousex > 260 && intmousex < 360 && intmousey < 140 && intmousey > 90 && intmousebut == 1){
+												blnrun2 = false;
+											}
 										}
 									}
-								}else{
-									blnyn = true;
 								}
 							}
 						}
@@ -370,9 +401,104 @@ public class cptmaster{
 					
 					blnPlayagain = false;
 				}
-			}
+			
 			
 			
 		return intScore;
+	}
+
+	public static Console leaderboard(Console con){
+		// clearing
+		con.clear();
+		con.setBackgroundColor(new Color(150,122,158));
+		
+		// variables (sorting);
+		TextInputFile leaderbd = new TextInputFile("leaderboard.txt");
+		String strArray[][];
+		String strName;
+		String strLine;
+		int intScore;
+		int intCount;
+		int intCount2;
+		int intRows = 0;
+		String strTemp;
+		
+		// setting array
+		while(leaderbd.eof() == false){
+			strLine = leaderbd.readLine();
+			intRows++;
+		}
+		
+		// System.out.println(intRows);
+		strArray = new String[intRows][2];
+		
+		// resetting file
+		leaderbd.close();
+		TextInputFile leaderbd2 = new TextInputFile("leaderboard.txt");
+		
+		// transferring text file to array
+		for(intCount = 1; intCount <= intRows/2; intCount++){
+			strArray[intCount-1][0] = leaderbd2.readLine();
+			strArray[intCount-1][1] = leaderbd2.readLine();
+			System.out.println(strArray[intCount-1][0]+" - "+strArray[intCount-1][1]);
+		}
+		
+		leaderbd2.close();
+		
+		// bubble sorting array
+		for(intCount = 0; intCount < (intRows/2)-1; intCount++){
+			for(intCount2 = 0; intCount2 < (intRows/2)-1; intCount2++){
+				System.out.println("Current count: "+intCount2);
+				System.out.println(strArray[intCount2][1]);
+				System.out.println(strArray[intCount2+1][1]);
+				if(Integer.parseInt(strArray[intCount2][1]) < Integer.parseInt(strArray[intCount2+1][1])){
+					strTemp = strArray[intCount2+1][0];
+					strArray[intCount2+1][0] = strArray[intCount2][0];
+					strArray[intCount2][0] = strTemp;
+					
+					strTemp = strArray[intCount2+1][1];
+					strArray[intCount2+1][1] = strArray[intCount2][1];
+					strArray[intCount2][1] = strTemp;
+				}
+			}
+		}
+		
+		// printing array back to leaderboard text file
+		TextOutputFile leaderbdout = new TextOutputFile("leaderboard.txt");
+		
+		for(intCount = 0; intCount < intRows/2; intCount++){
+			System.out.println(strArray[intCount][0]+" - "+strArray[intCount][1]);
+			leaderbdout.println(strArray[intCount][0]);
+			leaderbdout.println(strArray[intCount][1]);
+		}
+		
+		leaderbdout.close();
+		
+		// variables (printing)
+		int intScore2;
+		int intRank = 0;
+		TextInputFile leaderbd3 = new TextInputFile("leaderboard.txt");
+		
+		con.println("");
+		con.println("");
+		con.println("Current leaderboard:");
+		while(leaderbd3.eof() == false){
+			intRank = intRank + 1;
+			strLine = leaderbd3.readLine();
+			con.println("#"+intRank+": "+strLine);
+			intScore2 = Integer.parseInt(leaderbd3.readLine());
+			con.println("Score: "+intScore2);
+		}
+		
+		// return buttons
+		// variables
+		int intMousex;
+		int intMousey;
+		int intMousebut;
+		
+		// buttons
+		
+		
+		return con;
 	}
 }

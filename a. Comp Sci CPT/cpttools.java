@@ -67,7 +67,6 @@ public class cpttools{
 				
 		for(intCount = 0; intCount < intCol; intCount++){
 			strArray[intCount][1] = Integer.toString((int)(Math.random() * 100000));
-			// con.println(strArray[intCount][0] + " - " + strArray[intCount][1]);
 		}
 		
 		for(intCount2 = 0; intCount2 < intCol-1; intCount2++){
@@ -93,12 +92,6 @@ public class cpttools{
 		for(intCount = 0; intCount < intCol; intCount++){
 			strArray[intCount][1] = Integer.toString(intCount);
 		}
-		
-		//con.println("");
-		
-		//for(intCount = 0; intCount < intCol; intCount++){
-			//con.println(strArray[intCount][0] + " - " + strArray[intCount][1]);
-		//}
 		
 		return strArray;
 	}
