@@ -20,10 +20,11 @@ public class cptmaster{
 		// 241,235,250 = extremely light purple, white font color
 		// 88, 73, 110 = darker purple, dark font color
 		
-		/*
+		
 		con.setTextColor(new Color(150,122,158));
 		
 		// studio logo
+		con.sleep(200);
 		con.drawImage(studiologo, 5,10);
 		con.println("hello");
 		con.sleep(2000);
@@ -41,7 +42,7 @@ public class cptmaster{
 		con.clear();
 		con.setTextColor(new Color(241,235,250));
 		
-		*/
+		
 		
 		// setting variables
 		String strName = "name";
@@ -133,9 +134,9 @@ public class cptmaster{
 					intCursorx = con.currentMouseX();
 					intCursory = con.currentMouseY();
 					intMousebutton = con.currentMouseButton();
-					/* System.out.println("x: "+intCursorx);
+					System.out.println("x: "+intCursorx);
 					System.out.println("y: "+intCursory);
-					System.out.println("button: "+intMousebutton); */
+					System.out.println("button: "+intMousebutton);
 				
 					String strArray[][];
 					String strRead;
@@ -157,6 +158,9 @@ public class cptmaster{
 						num = 0;
 						blnerror = true;
 						
+						con.println("Returning to main menu...");
+						con.sleep(2000);
+						
 						animes.close();
 					}else if(260 < intCursorx && intCursorx < 460 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
 						strThemename = mastertext.readLine();
@@ -173,6 +177,9 @@ public class cptmaster{
 						
 						num = 0;
 						blnerror = true;
+						
+						con.println("Returning to main menu...");
+						con.sleep(2000);
 						
 						boardgames.close();
 					}else if(470 < intCursorx && intCursorx < 670 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
@@ -191,6 +198,9 @@ public class cptmaster{
 						
 						num = 0;
 						blnerror = true;
+						
+						con.println("Returning to main menu...");
+						con.sleep(2000);
 						
 						cartoons.close();
 					}else if(680 < intCursorx && intCursorx < 880 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
@@ -211,8 +221,12 @@ public class cptmaster{
 						num = 0;
 						blnerror = true;
 						
+						con.println("Returning to main menu...");
+						con.sleep(2000);
+						
 						artprograms.close();
 					}else if(intCursorx > 50 && intCursorx < 250 && intCursory > 160 && intCursory < 210 && intMousebutton == 1){
+						System.out.println("custom themes button pressed");
 						
 						// custom themes
 						con.setBackgroundColor(new Color(150,122,158));
@@ -248,30 +262,45 @@ public class cptmaster{
 							intLettercount = strCustomarray[intCount3][0].length();
 							strLengtharray[intCount3][0] = Integer.toString(intLettercount);
 							
-							con.fillRoundRect(50,100+intCount3*60,30+13*intLettercount,50,40,40);
+							con.fillRoundRect(50,300+intCount3*60,30+13*intLettercount,50,40,40);
 							con.setDrawColor(new Color(88, 73, 110));
-							con.drawString(strCustomarray[intCount3][0],65,107+intCount3*60);
+							con.drawString(strCustomarray[intCount3][0],65,307+intCount3*60);
 							con.setDrawColor(new Color(241,235,250)); 
 						}
 						
+						// drawing back button
+						con.fillRoundRect(50,50,120,50,40,40);
+						con.setDrawColor(new Color(88, 73, 110));
+						con.drawString("Back",60,57);
+						con.setDrawColor(new Color(241,235,250)); 
+						
 						// button interaction
-						for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
-							if(intCursorx > 50 && intCursorx < 30+50+13*Integer.parseInt(strLengtharray[intCount3][0]) && intCursory > 100+intCount3*60 && intCursory < 100+50+intCount3*60 && intMousebutton == 1){
-								TextInputFile customtheme = new TextInputFile(strCustomarray[intCount3][0]+".txt");
-								
-								while(customtheme.eof() == false){
-									strRead = customtheme.readLine();
-									intCols = intCols + 1;
+						
+							for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
+								if(intCursorx > 50 && intCursorx < 30+50+13*Integer.parseInt(strLengtharray[intCount3][0]) && intCursory > 300+intCount3*60 && intCursory < 300+50+intCount3*60 && intMousebutton == 1){
+									TextInputFile customtheme = new TextInputFile(strCustomarray[intCount3][0]+".txt");
+									
+									while(customtheme.eof() == false){
+										strRead = customtheme.readLine();
+										intCols = intCols + 1;
+									}
+									strThemename = strCustomarray[intCount3][0];
+									strArray = cpttools.randomsort(strThemename, intCols);
+									con.setBackgroundColor(new Color(150,122,158));
+									intScore = gameplay(strName, strArray, intCols, con);
+									
+									num = 0;
+									blnerror = true;
+									
+									customtheme.close();
+								}else if(intCursorx > 50 && intCursorx < 170 && intCursory > 50 && intCursory < 50 && intMousebutton == 1){
+									num = 0;
+									blnerror = true;
+									
+									con.println("Returning to main menu...");
+									con.sleep(2000);
 								}
-								strThemename = strCustomarray[intCount3][0];
-								strArray = cpttools.randomsort(strThemename, intCols);
-								con.setBackgroundColor(new Color(150,122,158));
-								intScore = gameplay(strName, strArray, intCols, con);
-								blnerror = true;
-								
-								customtheme.close();
 							}
-						}
 						
 					}else if(intCursorx > 260 && intCursorx < 490 && intCursory > 160 && intCursory < 210 && intMousebutton == 1){
 						// add custom theme
@@ -283,7 +312,7 @@ public class cptmaster{
 						int strclength = 0;
 						boolean blnadd = true;
 						boolean blnyn = false;
-						boolean blnlength = true;
+						boolean blnlength = false;
 						
 						con.println("What will be your theme's name?");
 						strCustomname = con.readLine();
@@ -292,7 +321,7 @@ public class cptmaster{
 						while(blnadd == true){
 							while(blnlength == false){
 								con.clear();
-								if(strclength < 7){
+								if(strclength < 7 && strclength != 0){
 									con.println("Your word has less than 7 letters.");
 								}
 								con.println("Please type a word related to your chosen theme.");
@@ -303,10 +332,11 @@ public class cptmaster{
 									blnlength = false;
 								}else{
 									newtheme.println(strRead);
+									blnlength = true;
 								}
 							}
 							if(blnlength == true){
-								con.println("Would you like to keep adding letters?");
+								con.println("Would you like to keep adding words?");
 								blnyn = false;
 								while(blnyn == false){
 									con.println("Please type 'y' for yes and 'n' for no.");
@@ -318,6 +348,9 @@ public class cptmaster{
 									}else if(strRead.equalsIgnoreCase("n")){
 										blnadd = false;
 										blnyn = true;
+										
+										con.println("Returning to main menu...");
+										con.sleep(2000);
 									}else{
 										blnyn = false;
 									}
@@ -325,11 +358,16 @@ public class cptmaster{
 							}
 						}
 						
+						num = 0;
+						blnerror = true;
+						
 					}else if(intCursorx > 50 && intCursorx < 220 && intCursory > 240 && intCursory < 290 && intMousebutton == 1){
 						// leaderboard
 						leaderboard(con);
 						num = 0;
 						blnerror = true;
+						con.println("Returning to main menu...");
+						con.sleep(2000);
 					}else if(intCursorx > 240 && intCursorx < 310 && intCursory > 240 && intCursory < 290 && intMousebutton == 1){
 						// quit
 						con.closeConsole();
@@ -693,7 +731,6 @@ public class cptmaster{
 			System.out.println("button: "+intMousebut); */
 			
 			if(intMousex > 10 && intMousex < 260 && intMousey > 10 && intMousey < 60 && intMousebut == 1){
-				con.println("button pressed");
 				return con;
 			}
 		}
