@@ -64,7 +64,6 @@ public class cptmaster{
 		
 		// getting theme choice
 		while(intmenuloop == 1){
-			con.println("looped!");
 			blnerror = false;
 			con.setBackgroundColor(new Color(150,122,158));
 			con.clear();
@@ -134,9 +133,9 @@ public class cptmaster{
 					intCursorx = con.currentMouseX();
 					intCursory = con.currentMouseY();
 					intMousebutton = con.currentMouseButton();
-					System.out.println("x: "+intCursorx);
+					/* System.out.println("x: "+intCursorx);
 					System.out.println("y: "+intCursory);
-					System.out.println("button: "+intMousebutton);
+					System.out.println("button: "+intMousebutton); */
 				
 					String strArray[][];
 					String strRead;
@@ -154,7 +153,8 @@ public class cptmaster{
 						strArray = cpttools.randomsort(strTheme, intCols);
 						con.setBackgroundColor(new Color(150,122,158));
 						intScore = gameplay(strName, strArray, intCols, con);
-						con.println("Returned to menu");
+						
+						num = 0;
 						blnerror = true;
 						
 						animes.close();
@@ -170,6 +170,8 @@ public class cptmaster{
 						strArray = cpttools.randomsort(strThemename, intCols);
 						con.setBackgroundColor(new Color(150,122,158));
 						intScore = gameplay(strName, strArray, intCols, con);
+						
+						num = 0;
 						blnerror = true;
 						
 						boardgames.close();
@@ -186,6 +188,8 @@ public class cptmaster{
 						strArray = cpttools.randomsort(strThemename, intCols);
 						con.setBackgroundColor(new Color(150,122,158));
 						intScore = gameplay(strName, strArray, intCols, con);
+						
+						num = 0;
 						blnerror = true;
 						
 						cartoons.close();
@@ -203,6 +207,8 @@ public class cptmaster{
 						strArray = cpttools.randomsort(strThemename, intCols);
 						con.setBackgroundColor(new Color(150,122,158));
 						intScore = gameplay(strName, strArray, intCols, con);
+						
+						num = 0;
 						blnerror = true;
 						
 						artprograms.close();
@@ -322,14 +328,11 @@ public class cptmaster{
 					}else if(intCursorx > 50 && intCursorx < 220 && intCursory > 240 && intCursory < 290 && intMousebutton == 1){
 						// leaderboard
 						leaderboard(con);
-						con.println("end of code");
 						num = 0;
 						blnerror = true;
 					}else if(intCursorx > 240 && intCursorx < 310 && intCursory > 240 && intCursory < 290 && intMousebutton == 1){
 						// quit
 						con.closeConsole();
-					}else{
-						blnvalid = true;
 					}
 				}
 			}
@@ -524,9 +527,10 @@ public class cptmaster{
 										intmousey = con.currentMouseY();
 										intmousebut = con.currentMouseButton();
 										
-										System.out.println("x: "+intmousex);
+										/* System.out.println("x: "+intmousex);
 										System.out.println("y: "+intmousey);
 										System.out.println("button: "+intmousebut);
+										*/
 									
 									if(intmousex > 50 && intmousex < 150 && intmousey < 140 && intmousey > 90 && intmousebut == 1){
 										blnPlayagain = true;
@@ -618,7 +622,6 @@ public class cptmaster{
 		for(intCount = 1; intCount <= intRows/2; intCount++){
 			strArray[intCount-1][0] = leaderbd2.readLine();
 			strArray[intCount-1][1] = leaderbd2.readLine();
-			System.out.println(strArray[intCount-1][0]+" - "+strArray[intCount-1][1]);
 		}
 		
 		leaderbd2.close();
@@ -626,9 +629,6 @@ public class cptmaster{
 		// bubble sorting array
 		for(intCount = 0; intCount < (intRows/2)-1; intCount++){
 			for(intCount2 = 0; intCount2 < (intRows/2)-1; intCount2++){
-				System.out.println("Current count: "+intCount2);
-				System.out.println(strArray[intCount2][1]);
-				System.out.println(strArray[intCount2+1][1]);
 				if(Integer.parseInt(strArray[intCount2][1]) < Integer.parseInt(strArray[intCount2+1][1])){
 					strTemp = strArray[intCount2+1][0];
 					strArray[intCount2+1][0] = strArray[intCount2][0];
@@ -645,7 +645,6 @@ public class cptmaster{
 		TextOutputFile leaderbdout = new TextOutputFile("leaderboard.txt");
 		
 		for(intCount = 0; intCount < intRows/2; intCount++){
-			System.out.println(strArray[intCount][0]+" - "+strArray[intCount][1]);
 			leaderbdout.println(strArray[intCount][0]);
 			leaderbdout.println(strArray[intCount][1]);
 		}
@@ -689,9 +688,9 @@ public class cptmaster{
 			intMousey = con.currentMouseY();
 			intMousebut = con.currentMouseButton();
 			
-			System.out.println("x: "+intMousex);
+			/* System.out.println("x: "+intMousex);
 			System.out.println("y: "+intMousey);
-			System.out.println("button: "+intMousebut);
+			System.out.println("button: "+intMousebut); */
 			
 			if(intMousex > 10 && intMousex < 260 && intMousey > 10 && intMousey < 60 && intMousebut == 1){
 				con.println("button pressed");
