@@ -1,25 +1,47 @@
 import arc.*;
 import java.awt.Color;
-
+import java.awt.image.BufferedImage;
+import java.awt.Image;
 
 public class cptmaster{
 	public static void main(String[] args){
+		
 				
 		Console con = new Console("Hangman",940,700);
 		con.setBackgroundColor(new Color(150,122,158));
 		con.setTextColor(new Color(241,235,250));
 		con.setDrawColor(new Color(241,235,250));
+		
+		BufferedImage studiologo = con.loadImage("Studio Logo.png");
+		BufferedImage gamelogo = con.loadImage("Hangman Logo.png");
 
 		// color legend
 		// 150,122,158 = middle gray purple, bg
 		// 241,235,250 = extremely light purple, white font color
 		// 88, 73, 110 = darker purple, dark font color
 		
-		// logo
-		// con.println("insert logo");
-		//con.sleep(500);
-		//con.clear();
-		// con.sleep(500);
+		/*
+		con.setTextColor(new Color(150,122,158));
+		
+		// studio logo
+		con.drawImage(studiologo, 5,10);
+		con.println("hello");
+		con.sleep(2000);
+		con.setBackgroundColor(new Color(150,122,158));
+		con.sleep(500);
+		
+		// game logo
+		con.clear();
+		con.drawImage(gamelogo, 5,10);
+		con.repaint();
+		con.sleep(2000);
+		con.setBackgroundColor(new Color(150,122,158));
+		con.sleep(500);
+		
+		con.clear();
+		con.setTextColor(new Color(241,235,250));
+		
+		*/
 		
 		// setting variables
 		String strName = "name";
@@ -132,6 +154,7 @@ public class cptmaster{
 						strArray = cpttools.randomsort(strTheme, intCols);
 						con.setBackgroundColor(new Color(150,122,158));
 						intScore = gameplay(strName, strArray, intCols, con);
+						con.println("Returned to menu");
 						blnerror = true;
 						
 						animes.close();
@@ -362,21 +385,16 @@ public class cptmaster{
 							
 							// setting up word variable
 							strWord = strArray[intCount][0];
-							// con.println(strWord);
 							
 							// counting letter count in word
 							intLettercount = strWord.length();
-							// con.println(intLettercount);
 												
 							// transferring letters to array
 							strWordarray = new String[intLettercount][3];
 							for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
-								// setting letter variable
 								strLetter = strWord.substring(intCount2, intCount2+1);
 								strWordarray[intCount2][0] = strLetter;
-								// setting order of letters
 								strWordarray[intCount2][2] = Integer.toString(intCount2+1);
-								// con.print(strWordarray[intCount2][0]);
 							}
 							
 							blnGuess = false;
@@ -523,12 +541,18 @@ public class cptmaster{
 										blnrun2 = true;
 										intnum = 1;
 										
-										con.clear();
-										
+										con.println("");
+										con.setBackgroundColor(new Color(150,122,158));
+
 										con.println("Your final score: "+intScore);
+										String strRead;
 										while(blnrun2 == true){
+											if(intnum == 0){
+												con.println("Please type y or n.");
+											}
 											con.println("Would you like to put your name on the leaderboard? y or n");
-											if(intmousex > 50 && intmousex < 150 && intmousey < 140 && intmousey > 90 && intmousebut == 1){
+											strRead = con.readLine();
+											if(strRead.equalsIgnoreCase("y")){
 												System.out.println("clicked yes leaderboard");
 												blnrun2 = false;
 												TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
@@ -538,8 +562,13 @@ public class cptmaster{
 												
 												con.println("Your name has been added to the leaderboard!");
 												con.println(strName + " - " + intScore);
-											}else if(intmousex > 260 && intmousex < 360 && intmousey < 140 && intmousey > 90 && intmousebut == 1){
+												
+												return intScore;
+											}else if(strRead.equalsIgnoreCase("n")){
 												blnrun2 = false;
+												return intScore;
+											}else{
+												intnum = 0;
 											}
 										}
 									}
