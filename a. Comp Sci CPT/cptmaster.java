@@ -1,8 +1,10 @@
 import arc.*;
 import java.awt.Color;
 
+
 public class cptmaster{
 	public static void main(String[] args){
+				
 		Console con = new Console("Hangman",940,700);
 		con.setBackgroundColor(new Color(150,122,158));
 		con.setTextColor(new Color(241,235,250));
@@ -35,130 +37,277 @@ public class cptmaster{
 		con.println("Please enter your name:");
 		strName = con.readLine();
 		
+		// setting menu loop
+		int intmenuloop = 1;
+		
 		// getting theme choice
-		while(blnerror == false){
+		while(intmenuloop == 1){
+			con.println("looped!");
+			blnerror = false;
+			con.setBackgroundColor(new Color(150,122,158));
 			con.clear();
-			if(blnvalid == true){
-				con.println("Please enter a valid theme name.");
-			}
-			
-			con.println("Hello, "+strName+"!");
-			con.println("Which theme would you like to play today?");
-			
-			// drawing buttons			
-			con.fillRoundRect(50,100,200,50,40,40);
-			con.setDrawColor(new Color(88, 73, 110));
-			con.drawString("Popular Animes",65,107);
-			con.setDrawColor(new Color(241,235,250)); 
-			
-			con.fillRoundRect(260,100,200,50,40,40);
-			con.setDrawColor(new Color(88, 73, 110));
-			con.drawString("Board Games",297,107);
-			con.setDrawColor(new Color(241,235,250));
-			
-			con.fillRoundRect(470,100,200,50,40,40);
-			con.setDrawColor(new Color(88, 73, 110));
-			con.drawString("Cartoons",520,107);
-			con.setDrawColor(new Color(241,235,250));
-			
-			con.fillRoundRect(680,100,200,50,40,40);
-			con.setDrawColor(new Color(88, 73, 110));
-			con.drawString("Art Programs",710,107);
-			con.setDrawColor(new Color(241,235,250));
-			
-			// button interaction
-			
-			int num = 1;
-			
-			while(num == 1){
-				int intCursorx;
-				int intCursory;
-				int intMousebutton;
+			while(blnerror == false){
+				con.clear();
 				
-				intCursorx = con.currentMouseX();
-				intCursory = con.currentMouseY();
-				intMousebutton = con.currentMouseButton();
-				System.out.println("x: "+intCursorx);
-				System.out.println("y: "+intCursory);
-				System.out.println("button: "+intMousebutton);
-			
-			
-			
-				// con.println("Popular Animes || Board Games || Cartoons || Art Programs");
-				// strTheme = con.readLine();
-				String strArray[][];
-				String strRead;
-				int intCols = 0;
+				con.println("Hello, "+strName+"!");
+				con.println("Which theme would you like to play today?");
 				
-				// running theme gameplay
-				// if(strTheme.equalsIgnoreCase("popular animes")){
-				if(50 < intCursorx && intCursorx < 250 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
-					strTheme = "popular animes";
-					strThemename = mastertext.readLine();
-					TextInputFile animes = new TextInputFile(strThemename+".txt");
-					while(animes.eof() == false){
-						strRead = animes.readLine();
-						intCols = intCols + 1;
-					}
-					strArray = cpttools.randomsort(strTheme, intCols);
-					con.setBackgroundColor(new Color(150,122,158));
-					intScore = gameplay(strName, strArray, intCols, con);
-					blnerror = true;
+				// drawing buttons
+				// themes			
+				con.setDrawColor(new Color(241,235,250)); 
+				con.fillRoundRect(50,100,200,50,40,40);
+				con.setDrawColor(new Color(88, 73, 110));
+				con.drawString("Popular Animes",65,107);
+				con.setDrawColor(new Color(241,235,250)); 
+				
+				con.fillRoundRect(260,100,200,50,40,40);
+				con.setDrawColor(new Color(88, 73, 110));
+				con.drawString("Board Games",297,107);
+				con.setDrawColor(new Color(241,235,250));
+				
+				con.fillRoundRect(470,100,200,50,40,40);
+				con.setDrawColor(new Color(88, 73, 110));
+				con.drawString("Cartoons",520,107);
+				con.setDrawColor(new Color(241,235,250));
+				
+				con.fillRoundRect(680,100,200,50,40,40);
+				con.setDrawColor(new Color(88, 73, 110));
+				con.drawString("Art Programs",710,107);
+				con.setDrawColor(new Color(241,235,250));
+				
+				// other buttons
+				// custom themes
+				con.fillRoundRect(50,160,200,50,40,40);
+				con.setDrawColor(new Color(88, 73, 110));
+				con.drawString("Custom Themes",70,167);
+				con.setDrawColor(new Color(241,235,250));
+				
+				// add custom theme
+				con.fillRoundRect(260,160,230,50,40,40);
+				con.setDrawColor(new Color(88, 73, 110));
+				con.drawString("Add Custom Theme",280,167);
+				con.setDrawColor(new Color(241,235,250));
+				
+				// leaderboard
+				con.fillRoundRect(50,240,170,50,40,40);
+				con.setDrawColor(new Color(88, 73, 110));
+				con.drawString("Leaderboard",70,247);
+				con.setDrawColor(new Color(241,235,250));
+				
+				//quit
+				con.fillRoundRect(240,240,70,50,40,40);
+				con.setDrawColor(new Color(88, 73, 110));
+				con.drawString("Quit",250,247);
+				con.setDrawColor(new Color(241,235,250));
+				
+				// button interaction
+				
+				int num = 1;
+				
+				while(num == 1){
+					int intCursorx;
+					int intCursory;
+					int intMousebutton;
 					
-					animes.close();
-				// }else if(strTheme.equalsIgnoreCase("board games")){
-				}else if(260 < intCursorx && intCursorx < 460 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
-					strThemename = mastertext.readLine();
-					strThemename = mastertext.readLine();
-					TextInputFile boardgames = new TextInputFile(strThemename+".txt");
-					while(boardgames.eof() == false){
-						strRead = boardgames.readLine();
-						intCols = intCols + 1;
-					}
-					strThemename = "board games";
-					strArray = cpttools.randomsort(strThemename, intCols);
-					con.setBackgroundColor(new Color(150,122,158));
-					intScore = gameplay(strName, strArray, intCols, con);
-					blnerror = true;
+					intCursorx = con.currentMouseX();
+					intCursory = con.currentMouseY();
+					intMousebutton = con.currentMouseButton();
+					System.out.println("x: "+intCursorx);
+					System.out.println("y: "+intCursory);
+					System.out.println("button: "+intMousebutton);
+				
+					String strArray[][];
+					String strRead;
+					int intCols = 0;
 					
-					boardgames.close();
-				// }else if(strTheme.equalsIgnoreCase("cartoons")){
-				}else if(470 < intCursorx && intCursorx < 670 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
-					strThemename = mastertext.readLine();
-					strThemename = mastertext.readLine();
-					strThemename = mastertext.readLine();
-					TextInputFile cartoons = new TextInputFile(strThemename+".txt");
-					while(cartoons.eof() == false){
-						strRead = cartoons.readLine();
-						intCols = intCols + 1;
+					// running theme gameplay
+					if(50 < intCursorx && intCursorx < 250 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
+						strTheme = "popular animes";
+						strThemename = mastertext.readLine();
+						TextInputFile animes = new TextInputFile(strThemename+".txt");
+						while(animes.eof() == false){
+							strRead = animes.readLine();
+							intCols = intCols + 1;
+						}
+						strArray = cpttools.randomsort(strTheme, intCols);
+						con.setBackgroundColor(new Color(150,122,158));
+						intScore = gameplay(strName, strArray, intCols, con);
+						blnerror = true;
+						
+						animes.close();
+					}else if(260 < intCursorx && intCursorx < 460 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
+						strThemename = mastertext.readLine();
+						strThemename = mastertext.readLine();
+						TextInputFile boardgames = new TextInputFile(strThemename+".txt");
+						while(boardgames.eof() == false){
+							strRead = boardgames.readLine();
+							intCols = intCols + 1;
+						}
+						strThemename = "board games";
+						strArray = cpttools.randomsort(strThemename, intCols);
+						con.setBackgroundColor(new Color(150,122,158));
+						intScore = gameplay(strName, strArray, intCols, con);
+						blnerror = true;
+						
+						boardgames.close();
+					}else if(470 < intCursorx && intCursorx < 670 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
+						strThemename = mastertext.readLine();
+						strThemename = mastertext.readLine();
+						strThemename = mastertext.readLine();
+						TextInputFile cartoons = new TextInputFile(strThemename+".txt");
+						while(cartoons.eof() == false){
+							strRead = cartoons.readLine();
+							intCols = intCols + 1;
+						}
+						strThemename = "cartoons";
+						strArray = cpttools.randomsort(strThemename, intCols);
+						con.setBackgroundColor(new Color(150,122,158));
+						intScore = gameplay(strName, strArray, intCols, con);
+						blnerror = true;
+						
+						cartoons.close();
+					}else if(680 < intCursorx && intCursorx < 880 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
+						strThemename = mastertext.readLine();
+						strThemename = mastertext.readLine();
+						strThemename = mastertext.readLine();
+						strThemename = mastertext.readLine();
+						TextInputFile artprograms = new TextInputFile(strThemename+".txt");
+						while(artprograms.eof() == false){
+							strRead = artprograms.readLine();
+							intCols = intCols + 1;
+						}
+						strThemename = "digital art programs";
+						strArray = cpttools.randomsort(strThemename, intCols);
+						con.setBackgroundColor(new Color(150,122,158));
+						intScore = gameplay(strName, strArray, intCols, con);
+						blnerror = true;
+						
+						artprograms.close();
+					}else if(intCursorx > 50 && intCursorx < 250 && intCursory > 160 && intCursory < 210 && intMousebutton == 1){
+						
+						// custom themes
+						con.setBackgroundColor(new Color(150,122,158));
+						
+						TextInputFile customthemes = new TextInputFile("custom themes.txt");
+						String strCustomarray[][];
+						int intnumcustom = 0;
+						int intCount3;
+						int intLettercount;
+						
+						// counting number of custom themes
+						while(customthemes.eof() == false){
+							strRead = customthemes.readLine();
+							intnumcustom++;
+						}
+						
+						customthemes.close();
+						TextInputFile customthemes2 = new TextInputFile("custom themes.txt");
+						
+						// transferring theme names to array
+						strCustomarray = new String[intnumcustom][1];
+						for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
+							strRead = customthemes2.readLine();
+							strCustomarray[intCount3][0] = strRead;
+						}
+						
+						customthemes2.close();
+						
+						// drawing buttons
+						String strLengtharray[][] = new String[intnumcustom][1];
+						con.setDrawColor(new Color(241,235,250)); 
+						for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
+							intLettercount = strCustomarray[intCount3][0].length();
+							strLengtharray[intCount3][0] = Integer.toString(intLettercount);
+							
+							con.fillRoundRect(50,100+intCount3*60,30+13*intLettercount,50,40,40);
+							con.setDrawColor(new Color(88, 73, 110));
+							con.drawString(strCustomarray[intCount3][0],65,107+intCount3*60);
+							con.setDrawColor(new Color(241,235,250)); 
+						}
+						
+						// button interaction
+						for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
+							if(intCursorx > 50 && intCursorx < 30+50+13*Integer.parseInt(strLengtharray[intCount3][0]) && intCursory > 100+intCount3*60 && intCursory < 100+50+intCount3*60 && intMousebutton == 1){
+								TextInputFile customtheme = new TextInputFile(strCustomarray[intCount3][0]+".txt");
+								
+								while(customtheme.eof() == false){
+									strRead = customtheme.readLine();
+									intCols = intCols + 1;
+								}
+								strThemename = strCustomarray[intCount3][0];
+								strArray = cpttools.randomsort(strThemename, intCols);
+								con.setBackgroundColor(new Color(150,122,158));
+								intScore = gameplay(strName, strArray, intCols, con);
+								blnerror = true;
+								
+								customtheme.close();
+							}
+						}
+						
+					}else if(intCursorx > 260 && intCursorx < 490 && intCursory > 160 && intCursory < 210 && intMousebutton == 1){
+						// add custom theme
+						
+						con.setBackgroundColor(new Color(150,122,158));
+						con.clear();
+						
+						String strCustomname;
+						int strclength = 0;
+						boolean blnadd = true;
+						boolean blnyn = false;
+						boolean blnlength = true;
+						
+						con.println("What will be your theme's name?");
+						strCustomname = con.readLine();
+						
+						TextOutputFile newtheme = new TextOutputFile(strCustomname+".txt");
+						while(blnadd == true){
+							while(blnlength == false){
+								con.clear();
+								if(strclength < 7){
+									con.println("Your word has less than 7 letters.");
+								}
+								con.println("Please type a word related to your chosen theme.");
+								con.println("Minimum: 7 letters");
+								strRead = con.readLine();
+								strclength = strRead.length();
+								if(strclength < 7){
+									blnlength = false;
+								}else{
+									newtheme.println(strRead);
+								}
+							}
+							if(blnlength == true){
+								con.println("Would you like to keep adding letters?");
+								blnyn = false;
+								while(blnyn == false){
+									con.println("Please type 'y' for yes and 'n' for no.");
+									strRead = con.readLine();
+									if(strRead.equalsIgnoreCase("y")){
+										blnadd = true;
+										blnyn = true;
+										blnlength = false;
+									}else if(strRead.equalsIgnoreCase("n")){
+										blnadd = false;
+										blnyn = true;
+									}else{
+										blnyn = false;
+									}
+								}
+							}
+						}
+						
+					}else if(intCursorx > 50 && intCursorx < 220 && intCursory > 240 && intCursory < 290 && intMousebutton == 1){
+						// leaderboard
+						leaderboard(con);
+						con.println("end of code");
+						num = 0;
+						blnerror = true;
+					}else if(intCursorx > 240 && intCursorx < 310 && intCursory > 240 && intCursory < 290 && intMousebutton == 1){
+						// quit
+						con.closeConsole();
+					}else{
+						blnvalid = true;
 					}
-					strThemename = "cartoons";
-					strArray = cpttools.randomsort(strThemename, intCols);
-					con.setBackgroundColor(new Color(150,122,158));
-					intScore = gameplay(strName, strArray, intCols, con);
-					blnerror = true;
-					
-					cartoons.close();
-				// }else if(strTheme.equalsIgnoreCase("digital art programs")){
-				}else if(680 < intCursorx && intCursorx < 880 && 100 < intCursory && intCursory < 150 && intMousebutton == 1){
-					strThemename = mastertext.readLine();
-					strThemename = mastertext.readLine();
-					strThemename = mastertext.readLine();
-					strThemename = mastertext.readLine();
-					TextInputFile artprograms = new TextInputFile(strThemename+".txt");
-					while(artprograms.eof() == false){
-						strRead = artprograms.readLine();
-						intCols = intCols + 1;
-					}
-					strThemename = "digital art programs";
-					strArray = cpttools.randomsort(strThemename, intCols);
-					con.setBackgroundColor(new Color(150,122,158));
-					intScore = gameplay(strName, strArray, intCols, con);
-					blnerror = true;
-					
-					artprograms.close();
-				}else{
-					blnvalid = true;
 				}
 			}
 		}
@@ -481,13 +630,14 @@ public class cptmaster{
 		
 		con.println("");
 		con.println("");
-		con.println("Current leaderboard:");
+		con.println("");
+		con.println("  Current leaderboard:");
 		while(leaderbd3.eof() == false){
 			intRank = intRank + 1;
 			strLine = leaderbd3.readLine();
-			con.println("#"+intRank+": "+strLine);
+			con.println("  #"+intRank+": "+strLine);
 			intScore2 = Integer.parseInt(leaderbd3.readLine());
-			con.println("Score: "+intScore2);
+			con.println("  Score: "+intScore2);
 		}
 		
 		// return buttons
@@ -495,9 +645,30 @@ public class cptmaster{
 		int intMousex;
 		int intMousey;
 		int intMousebut;
+		int intnum = 1;
 		
 		// buttons
+		con.setDrawColor(new Color(241,235,250));
+		con.fillRoundRect(10,10,250,50,40,40);
+		con.setDrawColor(new Color(88, 73, 110));
+		con.drawString("Back to Main Menu",20,18);
+		con.setDrawColor(new Color(241,235,250));
 		
+		// button interaction
+		while(intnum == 1){
+			intMousex = con.currentMouseX();
+			intMousey = con.currentMouseY();
+			intMousebut = con.currentMouseButton();
+			
+			System.out.println("x: "+intMousex);
+			System.out.println("y: "+intMousey);
+			System.out.println("button: "+intMousebut);
+			
+			if(intMousex > 10 && intMousex < 260 && intMousey > 10 && intMousey < 60 && intMousebut == 1){
+				con.println("button pressed");
+				return con;
+			}
+		}
 		
 		return con;
 	}
