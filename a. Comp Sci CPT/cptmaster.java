@@ -302,56 +302,6 @@ public class cptmaster{
 								}
 							}
 						}
-						/*
-						
-						// drawing buttons
-						String strLengtharray[][] = new String[intnumcustom][1];
-						con.setDrawColor(new Color(241,235,250)); 
-						for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
-							intLettercount = strCustomarray[intCount3][0].length();
-							strLengtharray[intCount3][0] = Integer.toString(intLettercount);
-							
-							con.fillRoundRect(50,300+intCount3*60,30+13*intLettercount,50,40,40);
-							con.setDrawColor(new Color(88, 73, 110));
-							con.drawString(strCustomarray[intCount3][0],65,307+intCount3*60);
-							con.setDrawColor(new Color(241,235,250)); 
-						}
-						
-						// drawing back button
-						con.fillRoundRect(50,50,120,50,40,40);
-						con.setDrawColor(new Color(88, 73, 110));
-						con.drawString("Back",60,57);
-						con.setDrawColor(new Color(241,235,250)); 
-						
-						// button interaction
-						
-							for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
-								if(intCursorx > 50 && intCursorx < 30+50+13*Integer.parseInt(strLengtharray[intCount3][0]) && intCursory > 300+intCount3*60 && intCursory < 300+50+intCount3*60 && intMousebutton == 1){
-									TextInputFile customtheme = new TextInputFile(strCustomarray[intCount3][0]+".txt");
-									
-									while(customtheme.eof() == false){
-										strRead = customtheme.readLine();
-										intCols = intCols + 1;
-									}
-									strThemename = strCustomarray[intCount3][0];
-									strArray = cpttools.randomsort(strThemename, intCols);
-									con.setBackgroundColor(new Color(150,122,158));
-									intScore = gameplay(strName, strArray, intCols, con);
-									
-									num = 0;
-									blnerror = true;
-									
-									customtheme.close();
-								}else if(intCursorx > 50 && intCursorx < 170 && intCursory > 50 && intCursory < 50 && intMousebutton == 1){
-									num = 0;
-									blnerror = true;
-									
-									con.println("Returning to main menu...");
-									con.sleep(2000);
-								}
-							}
-							* 
-							*/
 						
 					}else if(intCursorx > 260 && intCursorx < 490 && intCursory > 160 && intCursory < 210 && intMousebutton == 1){
 						// add custom theme
