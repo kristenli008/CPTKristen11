@@ -134,9 +134,6 @@ public class cptmaster{
 					intCursorx = con.currentMouseX();
 					intCursory = con.currentMouseY();
 					intMousebutton = con.currentMouseButton();
-					System.out.println("x: "+intCursorx);
-					System.out.println("y: "+intCursory);
-					System.out.println("button: "+intMousebutton);
 				
 					String strArray[][];
 					String strRead;
@@ -456,9 +453,6 @@ public class cptmaster{
 							while(blnGuess == false){
 								con.clear();
 								
-								// TESTING: correct answer
-								con.println(strWord);
-								
 								for(intCount2 = 0; intCount2 < intLettercount; intCount2++){
 									con.print(strGuessarray[intCount2][0]);
 								}
@@ -503,10 +497,10 @@ public class cptmaster{
 								if(strWordguess.equalsIgnoreCase(strWord)){
 									con.println("That's correct!");
 									blnGuess = true;
+									blnrunout = false;
 									intScore = intScore + 1;
 								}else{
 									intWrongtries = intWrongtries + 1;
-									// con.println("wrong tries: "+intWrongtries);
 
 									strGuessarray[Integer.parseInt(strWordarray[intWrongtries][2])-1][0] = strWordarray[intWrongtries][0] + " ";
 									con.println(strGuessarray[Integer.parseInt(strWordarray[intWrongtries][2])-1][0]);
@@ -523,7 +517,6 @@ public class cptmaster{
 							blnrun = false;
 							
 							// play again
-							// WONT NEED BLNRUN WITH BUTTONS
 							while(blnrun == false){
 								con.clear();
 								
@@ -564,19 +557,13 @@ public class cptmaster{
 										intmousex = con.currentMouseX();
 										intmousey = con.currentMouseY();
 										intmousebut = con.currentMouseButton();
-										
-										/* System.out.println("x: "+intmousex);
-										System.out.println("y: "+intmousey);
-										System.out.println("button: "+intmousebut);
-										*/
 									
 									if(intmousex > 50 && intmousex < 150 && intmousey < 140 && intmousey > 90 && intmousebut == 1){
 										blnPlayagain = true;
 										blnrun = true;
 										con.setBackgroundColor(new Color(150,122,158));
-										System.out.println("clicked yes");
 										intnum = 0;
-										System.out.println("intnum: "+intnum);
+										
 									}else if(intmousex > 260 && intmousex < 360 && intmousey < 140 && intmousey > 90 && intmousebut == 1){
 										blnPlayagain = false;
 										blnrun = true;
@@ -595,7 +582,6 @@ public class cptmaster{
 											con.println("Would you like to put your name on the leaderboard? y or n");
 											strRead = con.readLine();
 											if(strRead.equalsIgnoreCase("y")){
-												System.out.println("clicked yes leaderboard");
 												blnrun2 = false;
 												TextOutputFile leaderboard = new TextOutputFile("leaderboard.txt",true);
 												leaderboard.println(strName);
@@ -649,7 +635,6 @@ public class cptmaster{
 			intRows++;
 		}
 		
-		// System.out.println(intRows);
 		strArray = new String[intRows][2];
 		
 		// resetting file
@@ -725,10 +710,6 @@ public class cptmaster{
 			intMousex = con.currentMouseX();
 			intMousey = con.currentMouseY();
 			intMousebut = con.currentMouseButton();
-			
-			/* System.out.println("x: "+intMousex);
-			System.out.println("y: "+intMousey);
-			System.out.println("button: "+intMousebut); */
 			
 			if(intMousex > 10 && intMousex < 260 && intMousey > 10 && intMousey < 60 && intMousebut == 1){
 				return con;
