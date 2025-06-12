@@ -223,9 +223,9 @@ public class cptmaster{
 						
 						artprograms.close();
 					}else if(intCursorx > 50 && intCursorx < 250 && intCursory > 160 && intCursory < 210 && intMousebutton == 1){
-						System.out.println("custom themes button pressed");
 						
 						// custom themes
+						con.clear();
 						con.setBackgroundColor(new Color(150,122,158));
 						
 						TextInputFile customthemes = new TextInputFile("custom themes.txt");
@@ -233,12 +233,16 @@ public class cptmaster{
 						int intnumcustom = 0;
 						int intCount3;
 						int intLettercount;
+						boolean blncustom = false;
 						
 						// counting number of custom themes
 						while(customthemes.eof() == false){
 							strRead = customthemes.readLine();
 							intnumcustom++;
+							System.out.println("number of themes: "+intnumcustom);
 						}
+						
+						System.out.println("finished counting");
 						
 						customthemes.close();
 						TextInputFile customthemes2 = new TextInputFile("custom themes.txt");
@@ -248,9 +252,57 @@ public class cptmaster{
 						for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
 							strRead = customthemes2.readLine();
 							strCustomarray[intCount3][0] = strRead;
+							System.out.println("intcount3: "+intCount3);
 						}
 						
+						System.out.println("finished transferring");
+						
 						customthemes2.close();
+						
+						boolean blnyn = true;
+						blncustom = false;
+						
+						while(blncustom == false){
+							System.out.println("in loop");
+							con.clear();
+							if(blnyn = false){
+								con.println("This custom theme does not exist.");
+							}
+							con.println("These are the custom themes available:");
+							for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
+								con.println(strCustomarray[intCount3][0]);
+							}
+							con.println("Please type in the custom theme name you would like to play,");
+							con.println("or type 'return' to go back to the main menu.");
+							strRead = con.readLine();
+													
+							for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
+								if(strRead.equalsIgnoreCase(strCustomarray[intCount3][0])){
+									blncustom = true;
+									TextInputFile customtheme = new TextInputFile(strCustomarray[intCount3][0]+".txt");
+										while(customtheme.eof() == false){
+											strRead = customtheme.readLine();
+											intCols = intCols + 1;
+										}
+										strThemename = strCustomarray[intCount3][0];
+										strArray = cpttools.randomsort(strThemename, intCols);
+										con.setBackgroundColor(new Color(150,122,158));
+										intScore = gameplay(strName, strArray, intCols, con);
+										
+										num = 0;
+										blnerror = true;
+										
+										customtheme.close();
+								}else if(strRead.equalsIgnoreCase("return")){
+									num = 0;
+									blnerror = true;
+								}else{
+									blncustom = false;
+									blnyn = false;
+								}
+							}
+						}
+						/*
 						
 						// drawing buttons
 						String strLengtharray[][] = new String[intnumcustom][1];
@@ -298,6 +350,8 @@ public class cptmaster{
 									con.sleep(2000);
 								}
 							}
+							* 
+							*/
 						
 					}else if(intCursorx > 260 && intCursorx < 490 && intCursory > 160 && intCursory < 210 && intMousebutton == 1){
 						// add custom theme
