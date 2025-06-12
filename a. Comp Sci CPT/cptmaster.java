@@ -239,11 +239,8 @@ public class cptmaster{
 						while(customthemes.eof() == false){
 							strRead = customthemes.readLine();
 							intnumcustom++;
-							System.out.println("number of themes: "+intnumcustom);
 						}
-						
-						System.out.println("finished counting");
-						
+												
 						customthemes.close();
 						TextInputFile customthemes2 = new TextInputFile("custom themes.txt");
 						
@@ -252,11 +249,8 @@ public class cptmaster{
 						for(intCount3 = 0; intCount3 < intnumcustom; intCount3++){
 							strRead = customthemes2.readLine();
 							strCustomarray[intCount3][0] = strRead;
-							System.out.println("intcount3: "+intCount3);
 						}
-						
-						System.out.println("finished transferring");
-						
+												
 						customthemes2.close();
 						
 						boolean blnyn = true;
